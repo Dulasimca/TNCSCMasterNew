@@ -1,0 +1,11 @@
+{
+  "/api/*": {
+    "target": "https://api.tncsc-masters.in",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/api": "https://api.tncsc-masters.in"
+    }
+  }
+}

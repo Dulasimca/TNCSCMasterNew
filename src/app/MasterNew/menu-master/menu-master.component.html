@@ -1,0 +1,128 @@
+<app-header></app-header>
+<app-menu *ngIf="canShowMenu"></app-menu>
+<div class="ui-g-12 ui-md-12 ui-lg-12 content">
+    <p-panel>
+        <p-header>
+            <div class="ui-g panel-header">
+                <div class="ui-g-5 dashboard">Menu Master</div>
+                <div class="ui-g-12 ui-md-7 dashboard" style="padding-left: 45%">
+                    <input class="search-masters" type="text" [(ngModel)]="searchText" pInputText
+                        placeholder="Search by Menu Name" (ngModelChange)="onSearch($event)">
+                </div>
+            </div>
+        </p-header>
+        <p-toast position="top-center" key="t-err"></p-toast>
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-12 ui-md-4"></div>
+            <div class="ui-g-9 ui-md-3">
+                <label class="ui-g-7 label-fontsize dashboard" for="RoleMapping">Role ID</label>
+                <p-dropdown #role class="ui-g-12 ui-fluid dashboard" [options]="RoleMappingOptions"
+                    (onClick)="onSelect('RoleMapping', 'click')" (keyup.enter)="onSelect('RoleMapping', 'enter')"
+                    (keyup.tab)="onSelect('RoleMapping', 'enter')" [(ngModel)]="RoleMapping"
+                    (ngModelChange)="onReset('user')" name="Role" [showClear]="true" optionLabel='label'
+                    filterMatchMode="startsWith" [showClear]="true" required>
+                    <ng-template let-item pTemplate="selectedItem">
+                        <span style="vertical-align:middle">{{item.label}}</span>
+                    </ng-template>
+                </p-dropdown>
+            </div>
+            <div class="ui-g-3 ui-md-1" style="padding-top: 20px;">
+                <button class="ui-g-3 dashboard inline-margin" pButton type="button" label=View (click)="onView()"
+                    [disabled]="(!RoleMapping)"></button>
+            </div>
+            <div class="ui-g-3 ui-md-1" style="padding-top: 20px;">
+                <button class="ui-g-3 dashboard inline-margin" pButton type="button" label=Add (click)="onAdd()"
+                    [disabled]="(!RoleMapping)"></button>
+            </div>
+            <div class="ui-g-12 ui-md-4"></div>
+            <div class="ui-g-12 dashboard">
+                <p-table #dt [columns]="MenuMasterCols" [value]="MenuMasterData" [rows]="20"
+                    [rowsPerPageOptions]="[10,20,30,40,50,100]" [paginator]="true" [loading]="loading"
+                    [responsive]="true" exportFilename="MENU_MASTER" autoLayout="true">
+                    <ng-template pTemplate="header" let-columns>
+                        <tr style="text-align: center;">
+                            <th *ngFor="let col of columns">
+                                {{col.header}}
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns" let-rowIndex="rowIndex">
+                        <tr>
+                            <td *ngFor="let col of columns">
+                                {{rowData[col.field]}}
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </p-panel>
+</div>
+
+<p-dialog header="Menu Master Entry" [contentStyle]="{'overflow':'scroll'}" [modal]="true" [maximizable]="true"
+    [(visible)]="isEdited" [responsive]="true" [style]="{width: '1111px', height: '1750px !important'}">
+    <div class="ui-g-12 ui-fluid border-teal">
+        <form #f="ngForm" name="menuMaster">
+            <div class="ui-g-12 ui-fluid">
+                <div class="ui-g-9 ui-md-3">
+                    <label class="ui-g-7 label-fontsize dashboard" for="RoleMapping">Role ID</label>
+                    <p-dropdown #role class="ui-g-12 ui-fluid dashboard" [options]="RoleMappingOptions"
+                        (onClick)="onSelect('RoleMapping', 'click')" (keyup.enter)="onSelect('RoleMapping', 'enter')"
+                        (keyup.tab)="onSelect('RoleMapping', 'enter')" [(ngModel)]="RoleMapping"
+                        (ngModelChange)="onReset('role')" name="Role" [showClear]="true" optionLabel='label'
+                        filterMatchMode="startsWith" [showClear]="true" required>
+                        <ng-template let-item pTemplate="selectedItem">
+                            <span style="vertical-align:middle">{{item.label}}</span>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+                <div class="ui-g-6 ui-md-3 padtop">
+                    <span class="ui-float-label">
+                        <input name="ID" pInputText [(ngModel)]="ID" autocomplete="off" required>
+                        <label for="ID" class="float-input">ID</label>
+                    </span>
+                </div>
+                <div class="ui-g-6 ui-md-3 padtop">
+                    <span class="ui-float-label">
+                        <input name="MenuName" pInputText [(ngModel)]="MenuName" autocomplete="off" required>
+                        <label for="MenuName" class="float-input">Menu Name</label>
+                    </span>
+                </div>
+
+                <div class="ui-g-6 ui-md-3 padtop">
+                    <span class="ui-float-label">
+                        <input name="url" pInputText [(ngModel)]="url" autocomplete="off" required>
+                        <label for="url" class="float-input">URL</label>
+                    </span>
+                </div>
+            </div>
+            <div class="ui-g-12">
+                <div class="ui-g-12 ui-md-3"></div>
+                <div class="ui-g-6 ui-md-3 padtop">
+                    <span class="ui-float-label">
+                        <input name="ParentID" pInputText [(ngModel)]="ParentID" autocomplete="off" required>
+                        <label for="ParentID" class="float-input">Parent ID</label>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-3" style="padding-top: 18px;">
+                    <div class="ui-g border-lightgrey">
+                        <p-radioButton class="ui-g-6" name="Flag" label="Active" value=1 [(ngModel)]="Active" required>
+                        </p-radioButton>
+                        <p-radioButton class="ui-g-6" name="Flag" label="InActive" value=0 [(ngModel)]="Active"
+                            required>
+                        </p-radioButton>
+                    </div>
+                </div>
+                <div class="ui-g-12 ui-md-3"></div>
+            </div>
+            <div class="ui-g-12">
+                <div class="ui-g-12 ui-md-5"></div>
+                <div class="ui-g-3 ui-md-2 ui-fluid" style="padding-left: 30px;">
+                    <button pButton type="button" label=Save (click)="onSave()"
+                        [disabled]="(!MenuName || !ID || !url || !ParentID || !RoleMapping || !Active)"></button>
+                </div>
+                <div class="ui-g-12 ui-md-5"></div>
+            </div>
+        </form>
+    </div>
+</p-dialog>

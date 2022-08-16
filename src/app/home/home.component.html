@@ -1,0 +1,325 @@
+<app-header></app-header>
+<app-menu *ngIf="canShowMenu"></app-menu>
+<div class="ui-g-12">
+  <div class="ui-g-12 card" style="box-shadow: none !important;">
+    <div class="ui-g">
+      <div class="ui-g-12 ui-md-12 ui-g-nopad">
+        <div class="ui-g-12 dashboard">
+          <div class="ui-g-12 ui-md-1"></div>
+          <div class="ui-g-12 ui-md-10 dashboard">
+            <div id="godown" class="ui-g-12 ui-md-6 ui-lg-3 card no-padding cursor-pointer"
+              (click)="onGridClicked('godown')">
+              <div class="ui-g ui-fluid colorbox colorbox-lightBlue">
+                <div class="ui-g-4 colorbox colorbox-icon-lightBlue">
+                  <i class="fa fa-home fa-2x" style="margin-top: 12px"></i>
+                </div>
+                <div class="ui-g-8 colorbox">
+                  <span class="colorbox-name">GODOWNS</span>
+                  <span class="colorbox-count">{{godownCount}}</span>
+                </div>
+              </div>
+            </div>
+            <div id="regions" class="ui-g-12 ui-md-6 ui-lg-3 card no-padding cursor-pointer"
+              (click)="onGridClicked('regions')">
+              <div class="ui-g ui-fluid colorbox colorbox-gray">
+                <div class="ui-g-4 colorbox colorbox-icon-gray">
+                  <i class="fa fa-map fa-2x" style="margin-top: 12px"></i>
+                </div>
+                <div class="ui-g-8 colorbox">
+                  <span class="colorbox-name">REGIONS</span>
+                  <span class="colorbox-count">{{regionCount}}</span>
+                </div>
+              </div>
+            </div>
+            <div id="mrm" class="ui-g-12 ui-md-6 ui-lg-3 card no-padding cursor-pointer" (click)="onGridClicked('mrm')">
+              <div class="ui-g ui-fluid colorbox colorbox-yellow">
+                <div class="ui-g-4 colorbox colorbox-icon-yellow">
+                  <i class="fa fa-industry fa-2x" style="margin-top: 12px"></i>
+                </div>
+                <div class="ui-g-8 colorbox">
+                  <span class="colorbox-name">MRM</span>
+                  <span class="colorbox-count">{{mrmCount}}</span>
+                </div>
+              </div>
+            </div>
+            <div id="aads" #AADS class="ui-g-12 ui-md-6 ui-lg-3 card no-padding cursor-pointer"
+              (click)="onGridClicked('aads')">
+              <div class="ui-g ui-fluid colorbox colorbox-green">
+                <div class="ui-g-4 card colorbox colorbox-icon-green">
+                  <i class="fa fa-cubes fa-2x" style="margin-top: 12px"></i>
+                </div>
+                <div class="ui-g-8 colorbox">
+                  <span class="colorbox-name">AADS</span>
+                  <span class="colorbox-count">{{aadsCount}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ui-g-12 dashboard">
+          <div class="ui-g-12 ui-md-1"></div>
+          <div class="ui-g-12 ui-md-10 dashboard">
+            <div id="fci" class="ui-g-12 ui-md-6 ui-lg-3 card no-padding cursor-pointer" (click)="onGridClicked('fci')">
+              <div class="ui-g ui-fluid colorbox colorbox-pink">
+                <div class="ui-g-4 colorbox colorbox-icon-pink">
+                  <i class="fa fa-pagelines fa-2x" style="margin-top: 12px"></i>
+                </div>
+                <div class="ui-g-8 colorbox">
+                  <span class="colorbox-name">FCI</span>
+                  <span class="colorbox-count">{{fciCount}}</span>
+                </div>
+              </div>
+            </div>
+            <div id="hullingAgencies" class="ui-g-12 ui-md-6 ui-lg-3 card no-padding cursor-pointer"
+              (click)="onGridClicked('hullingAgencies')">
+              <div class="ui-g ui-fluid colorbox colorbox-lightBlue">
+                <div class="ui-g-4 colorbox colorbox-icon-lightBlue">
+                  <i class="fa fa-building fa-2x" style="margin-top: 12px"></i>
+                </div>
+                <div class="ui-g-8 colorbox">
+                  <span class="colorbox-name">HULLING AGENCIES</span>
+                  <span class="colorbox-count">{{hullingAgencies}}</span>
+                </div>
+              </div>
+            </div>
+            <div id="supplier" class="ui-g-12 ui-md-6 ui-lg-3 card no-padding cursor-pointer"
+              (click)="onGridClicked('supplier')">
+              <div class="ui-g ui-fluid colorbox colorbox-gray">
+                <div class="ui-g-4 colorbox colorbox-icon-gray">
+                  <i class="fa fa-sitemap fa-2x" style="margin-top: 12px"></i>
+                </div>
+                <div class="ui-g-8 colorbox">
+                  <span class="colorbox-name">SUPPLIERS</span>
+                  <span class="colorbox-count">{{suppliersCount}}</span>
+                </div>
+              </div>
+            </div>
+            <div id="railyard" class="ui-g-12 ui-md-6 ui-lg-3 card no-padding cursor-pointer"
+              (click)="onGridClicked('railyard')">
+              <div class="ui-g ui-fluid colorbox colorbox-yellow">
+                <div class="ui-g-4 colorbox colorbox-icon-yellow">
+                  <i class="fa fa-train fa-2x" style="margin-top: 12px"></i>
+                </div>
+                <div class="ui-g-8 colorbox">
+                  <span class="colorbox-name">RAILYARD</span>
+                  <span class="colorbox-count">{{railyardCount}}</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="ui-g-12 dashboard">
+          <div class="ui-g-12 ui-md-1"></div>
+          <div class="ui-g-12 ui-md-10 dashboard">
+            <div id="type" class="ui-g-12 ui-md-6 ui-lg-3 card no-padding cursor-pointer"
+              (click)="onGridClicked('type')">
+              <div class="ui-g ui-fluid colorbox colorbox-blue">
+                <div class="ui-g-4 colorbox colorbox-icon-blue">
+                  <i class="fa fa-shopping-cart fa-2x" style="margin-top: 12px"></i>
+                </div>
+                <div class="ui-g-8 colorbox">
+                  <span class="colorbox-name">TYPE</span>
+                  <span class="colorbox-count">{{typeCount}}</span>
+                </div>
+              </div>
+            </div>
+            <div id="transaction" class="ui-g-12 ui-md-6 ui-lg-3 card no-padding cursor-pointer"
+              (click)="onGridClicked('transaction')">
+              <div class="ui-g ui-fluid colorbox colorbox-pink">
+                <div class="ui-g-4 colorbox colorbox-icon-pink">
+                  <i class="fa fa-rocket fa-2x" style="margin-top: 12px"></i>
+                </div>
+                <div class="ui-g-8 colorbox">
+                  <span class="colorbox-name">TRANSACTION</span>
+                  <span class="colorbox-count">{{transactionCount}}</span>
+                </div>
+              </div>
+            </div>
+            <div id="packing" class="ui-g-12 ui-md-6 ui-lg-3 card no-padding cursor-pointer"
+              (click)="onGridClicked('packing')">
+              <div class="ui-g ui-fluid colorbox colorbox-lightBlue">
+                <div class="ui-g-4 colorbox colorbox-icon-lightBlue">
+                  <i class="fa fa-suitcase fa-2x" style="margin-top: 12px"></i>
+                </div>
+                <div class="ui-g-8 colorbox">
+                  <span class="colorbox-name">PACKING</span>
+                  <span class="colorbox-count">{{packingCount}}</span>
+                </div>
+              </div>
+            </div>
+            <div id="weighment" class="ui-g-12 ui-md-6 ui-lg-3 card no-padding cursor-pointer"
+              (click)="onGridClicked('weighment')">
+              <div class="ui-g ui-fluid colorbox colorbox-gray">
+                <div class="ui-g-4 colorbox colorbox-icon-gray">
+                  <i class="fa fa-ticket fa-2x" style="margin-top: 12px"></i>
+                </div>
+                <div class="ui-g-8 colorbox">
+                  <span class="colorbox-name">WEIGHMENT</span>
+                  <span class="colorbox-count">{{weighmentCount}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ui-g-12 dashboard">
+          <div class="ui-g-12 ui-md-1"></div>
+          <div class="ui-g-12 ui-md-10 dashboard">
+            <div id="vehicle" class="ui-g-12 ui-md-6 ui-lg-3 card no-padding cursor-pointer"
+              (click)="onGridClicked('vehicle')">
+              <div class="ui-g ui-fluid colorbox colorbox-green">
+                <div class="ui-g-4 card colorbox colorbox-icon-green">
+                  <i class="fa fa-truck fa-2x" style="margin-top: 12px"></i>
+                </div>
+                <div class="ui-g-8 colorbox">
+                  <span class="colorbox-name">VEHICLE</span>
+                  <span class="colorbox-count">{{vehicleCount}}</span>
+                </div>
+              </div>
+            </div>
+            <div id="gunny" class="ui-g-12 ui-md-6 ui-lg-3 card no-padding cursor-pointer"
+              (click)="onGridClicked('gunny')">
+              <div class="ui-g ui-fluid colorbox colorbox-blue">
+                <div class="ui-g-4 colorbox colorbox-icon-blue">
+                  <i class="fa fa-shopping-bag fa-2x" style="margin-top: 12px"></i>
+                </div>
+                <div class="ui-g-8 colorbox">
+                  <span class="colorbox-name">GUNNY</span>
+                  <span class="colorbox-count">{{gunnyCount}}</span>
+                </div>
+              </div>
+            </div>
+            <div id="cereal" class="ui-g-12 ui-md-6 ui-lg-3 card no-padding cursor-pointer"
+              (click)="onGridClicked('cereal')">
+              <div class="ui-g ui-fluid colorbox colorbox-pink">
+                <div class="ui-g-4 colorbox colorbox-icon-pink">
+                  <i class="fa fa-code fa-2x" style="margin-top: 12px"></i>
+                </div>
+                <div class="ui-g-8 colorbox">
+                  <span class="colorbox-name">CEREAL/NON-CEREAL</span>
+                  <span class="colorbox-count">{{cerealCount}}/{{nonCerealCount}}</span>
+                </div>
+              </div>
+            </div>
+            <div id="schemes" class="ui-g-12 ui-md-6 ui-lg-3 card no-padding cursor-pointer"
+              (click)="onGridClicked('schemes')">
+              <div class="ui-g ui-fluid colorbox colorbox-lightBlue">
+                <div class="ui-g-4 colorbox colorbox-icon-lightBlue">
+                  <i class="fa fa-tasks fa-2x" style="margin-top: 12px"></i>
+                </div>
+                <div class="ui-g-8 colorbox">
+                  <span class="colorbox-name">SCHEME</span>
+                  <span class="colorbox-count">{{schemeCount}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ui-g-12 dashboard">
+          <div class="ui-g-12 ui-md-1"></div>
+          <div class="ui-g-12 ui-md-10 dashboard">
+            <div id="depositor" class="ui-g-12 ui-md-6 ui-lg-3 card no-padding cursor-pointer"
+              (click)="onGridClicked('depositor')">
+              <div class="ui-g ui-fluid overview">
+                <div class="ui-g-10 overview-content clearfix">
+                  <span class="ui-g-6 overview-title">DEPOSITORS</span>
+                  <span class="ui-g-4 overview-detail">{{depositorCount}}</span>
+                </div>
+                <div class="overview-footer">
+                  <img src="../../assets/layout/images/dashboard/views.svg" style="width: 100%">
+                </div>
+              </div>
+            </div>
+            <div id="commodity" class="ui-g-12 ui-md-6 ui-lg-3 card no-padding cursor-pointer"
+              (click)="onGridClicked('commodity')">
+              <div class="ui-g ui-fluid overview">
+                <div class="ui-g-10 overview-content clearfix">
+                  <span class="ui-g-6 overview-title">COMMODITY</span>
+                  <span class="ui-g-4 overview-detail">{{commodityCount}}</span>
+                </div>
+                <div class="overview-footer">
+                  <img src="../../assets/layout/images/dashboard/views.svg" style="width: 100%">
+                </div>
+              </div>
+            </div>
+            <div id="schemeCommodity" class="ui-g-12 ui-md-6 ui-lg-3 card no-padding cursor-pointer"
+              (click)="onGridClicked('schemeCommodity')">
+              <div class="ui-g ui-fluid overview">
+                <div class="ui-g-10 overview-content clearfix">
+                  <span class="ui-g-6 overview-title">SCHEME COMMODITY</span>
+                  <span class="ui-g-4 overview-detail">{{schemeCommodityCount}}</span>
+                </div>
+                <div class="overview-footer">
+                  <img src="../../assets/layout/images/dashboard/views.svg" style="width: 100%">
+                </div>
+              </div>
+            </div>
+            <div id="allotmentQuantity" class="ui-g-12 ui-md-6 ui-lg-3 card no-padding cursor-pointer"
+              (click)="onGridClicked('allotmentQuantity')">
+              <div class="ui-g ui-fluid overview">
+                <div class="ui-g-10 overview-content clearfix">
+                  <span class="ui-g-6 overview-title">ALLOTMENT COMMODITY</span>
+                  <span class="ui-g-4 overview-detail">{{allotmentQuantityCount}}</span>
+                </div>
+                <div class="overview-footer">
+                  <img src="../../assets/layout/images/dashboard/views.svg" style="width: 100%">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ui-g-12 dashboard">
+          <div class="ui-g-3"></div>
+          <!-- <div id="menuMaster" class="ui-g-12 ui-md-6 ui-lg-2 card no-padding cursor-pointer"
+            (click)="onGridClicked('menuMaster')">
+            <div class="ui-g ui-fluid overview">
+              <div class="ui-g-12 overview-content clearfix">
+                <span class="ui-g-12 overview-title" style="padding-left: 20px;">MENU MASTER</span>
+                 <span class="ui-g-4 overview-detail">{{stackCardCount}}</span> 
+              </div>
+              <div class="overview-footer">
+                <img src="../../assets/layout/images/dashboard/views.svg" style="width: 100%">
+              </div>
+            </div>
+          </div> -->
+          <div id="stackCard" class="ui-g-12 ui-md-6 ui-lg-2 card no-padding cursor-pointer"
+            (click)="onGridClicked('stackCard')">
+            <div class="ui-g ui-fluid overview">
+              <div class="ui-g-12 overview-content clearfix">
+                <span class="ui-g-12 overview-title" style="padding-left: 20px;">STACK CARD UPDATE</span>
+                <!-- <span class="ui-g-4 overview-detail">{{stackCardCount}}</span> -->
+              </div>
+              <div class="overview-footer">
+                <img src="../../assets/layout/images/dashboard/views.svg" style="width: 100%">
+              </div>
+            </div>
+          </div>
+          <div id="userMaster" class="ui-g-12 ui-md-6 ui-lg-2 card no-padding cursor-pointer"
+            (click)="onGridClicked('userMaster')">
+            <div class="ui-g ui-fluid overview">
+              <div class="ui-g-12 overview-content clearfix">
+                <span class="ui-g-12 overview-title" style="padding-left: 20px;">USER MASTER</span>
+                <!-- <span class="ui-g-4 overview-detail">{{stackCardCount}}</span> -->
+              </div>
+              <div class="overview-footer">
+                <img src="../../assets/layout/images/dashboard/views.svg" style="width: 100%">
+              </div>
+            </div>
+          </div>
+          <div class="ui-g-3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-dialog header="Greetings from TNCSC!" *ngIf="noti" [(visible)]="display" [modal]="true" [responsive]="true"
+  [style]="{width: '350px', top: '240px', minWidth: '200px', background:'linear-gradient(to bottom, #f6f7f9 0%, #ebedf0 100%'}"
+  [minY]="70" [maximizable]="false" [baseZIndex]="10000">
+  <div style="text-align: center">
+    <img class="PB-img" src='{{imgPost}}' style="height: 150px; width: auto;" />
+    <div>
+      {{NotificationNotes}}
+    </div>
+  </div>
+</p-dialog>

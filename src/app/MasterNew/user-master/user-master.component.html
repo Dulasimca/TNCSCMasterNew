@@ -1,0 +1,225 @@
+<app-header></app-header>
+<app-menu *ngIf="canShowMenu"></app-menu>
+<div class="ui-g-12 ui-md-12 ui-lg-12 content">
+    <p-panel>
+        <p-header>
+            <div class="ui-g panel-header">
+                <div class="ui-g-5 dashboard">User Master</div>
+                <div class="ui-g-12 ui-md-7 dashboard" style="padding-left: 45%">
+                    <input class="search-masters" type="text" [(ngModel)]="searchText" pInputText
+                        placeholder="Search by UserName" (ngModelChange)="onSearch($event)">
+                </div>
+            </div>
+        </p-header>
+        <p-toast position="top-center" key="t-err"></p-toast>
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-6 ui-md-2">
+                <label class="ui-g-7 label-fontsize dashboard">Region: <span
+                        class="form-mandatory-field">*</span></label>
+                <p-dropdown #region class="ui-g-12 ui-fluid dashboard" [options]="regionOptions" [(ngModel)]="RCode"
+                    (onClick)="onSelect('reg', 'click')" name="RegionData" (keydown.enter)="onSelect('reg', 'enter')"
+                    [showClear]="true" filter="true" resetFilterOnHide="true" filterMatchMode="startsWith"
+                    optionLabel='label'>
+                    <ng-template let-item pTemplate="selectedItem">
+                        <span style="vertical-align:middle">{{item.label}}</span>
+                    </ng-template>
+                </p-dropdown>
+            </div>
+            <div class="ui-g-6 ui-md-2">
+                <label class="ui-g-7 label-fontsize dashboard">Godown: <span
+                        class="form-mandatory-field">*</span></label>
+                <p-dropdown #godown class="ui-g-12 ui-fluid dashboard" [options]="godownOptions" [(ngModel)]="GCode"
+                    (onClick)="onSelect('gd', 'click')" name="GodownData" (keydown.enter)="onSelect('gd', 'enter')"
+                    filter="true" resetFilterOnHide="true" [showClear]="true" filterMatchMode="startsWith"
+                    optionLabel='label'>
+                    <ng-template let-item pTemplate="selectedItem">
+                        <span style="vertical-align:middle">{{item.label}}</span>
+                    </ng-template>
+                </p-dropdown>
+            </div>
+            <div class="ui-g-6 ui-md-2">
+                <label class="ui-g-7 label-fontsize dashboard">Role Id: <span
+                        class="form-mandatory-field">*</span></label>
+                <p-dropdown #role class="ui-g-12 ui-fluid dashboard" [options]="RoleMappingOptions"
+                    (onClick)="onSelect('RoleMapping', 'click')" (keyup.enter)="onSelect('RoleMapping', 'enter')"
+                    (keyup.tab)="onSelect('RoleMapping', 'enter')" [(ngModel)]="RoleMapping"
+                    name="Role" [showClear]="true" optionLabel='label'
+                    filterMatchMode="startsWith" [showClear]="true" required>
+                    <ng-template let-item pTemplate="selectedItem">
+                        <span style="vertical-align:middle">{{item.label}}</span>
+                    </ng-template>
+                </p-dropdown>
+            </div>
+            <div class="ui-g-6 ui-md-2 padtop">
+                <span class="ui-float-label">
+                    <input name="UserName" type="text" pInputText [(ngModel)]="UserName" autocomplete="off" required>
+                    <label for="UserName" class="float-input">User Name: <span
+                            class="form-mandatory-field">*</span></label>
+                </span>
+            </div>
+            <div class="ui-g-6 ui-md-2 padtop">
+                <span class="ui-float-label">
+                    <input name="Password" type="password" pInputText [(ngModel)]="Password" autocomplete="off"
+                        [readOnly]="true" required>
+                    <label for="Password" class="float-input">Password: <span
+                            class="form-mandatory-field">*</span></label>
+                </span>
+            </div>
+            <div class="ui-g-12 dashboard">
+                <div class="ui-g-6 ui-md-2 padtop">
+                    <span class="ui-float-label">
+                        <input name="Email" type="email" pInputText [(ngModel)]="Email" autocomplete="off"
+                            required>
+                        <label for="Email" class="float-input">Email</label>
+                    </span>
+                </div>
+                <div class="ui-g-6 ui-md-2 padtop">
+                    <span class="ui-float-label">
+                        <input name="PhoneNo" type="number" pInputText [(ngModel)]="PhoneNo" autocomplete="off"
+                             required>
+                        <label for="PhoneNo" class="float-input">Phone no.</label>
+                    </span>
+                </div>
+                <div class="ui-g-6 ui-md-2 padtop">
+                    <span class="ui-float-label">
+                        <input name="Emp" pInputText [(ngModel)]="Emp" autocomplete="off" required>
+                        <label for="Emp" class="float-input">Employee ID</label>
+                    </span>
+                </div>
+
+
+                <div class="ui-g-6 ui-md-3 padtop">
+                    <div class="ui-g border-lightgrey">
+                        <p-radioButton class="ui-g-6" name="Flag" label="Active" value=1 [(ngModel)]="Active" required>
+                        </p-radioButton>
+                        <p-radioButton class="ui-g-6" name="Flag" label="InActive" value=0 [(ngModel)]="Active"
+                            required>
+                        </p-radioButton>
+                    </div>
+                </div>
+                <div class="ui-g-12 dashboard">
+                    <div class="ui-g-5"></div>
+                    <div class="ui-g-3 ui-md-1" style="padding-top: 20px;">
+                        <button class="ui-g-3 dashboard inline-margin" pButton type="button" label=Save
+                            (click)="onSave()" [disabled]="(!UserName || !Password || !Active || !RoleMapping)">
+                        </button>
+                    </div>
+                    <div class="ui-g-3 ui-md-1" style="padding-top: 20px;">
+                        <button class="ui-g-3 dashboard inline-margin" pButton type="button" label=View
+                            (click)="onView()"></button>
+                    </div>
+                </div>
+                <div class="ui-g-12 ui-md-4"></div>
+                <div class="ui-g-12 dashboard">
+                    <p-table #dt [columns]="UserMasterCols" [value]="UserMasterData" [rows]="20"
+                        [rowsPerPageOptions]="[10,20,30,40,50,100]" [paginator]="true" [loading]="loading"
+                        [responsive]="true" exportFilename="USER_MASTER" autoLayout="true">
+                        <ng-template pTemplate="header" let-columns>
+                            <tr style="text-align: center;">
+                                <th *ngFor="let col of columns">
+                                    {{col.header}}
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-rowData let-columns="columns" let-rowIndex="rowIndex">
+                            <tr [pSelectableRow]="rowData" (dblclick)="onRow($event, rowData)">
+                                <td *ngFor="let col of columns">
+                                    {{rowData[col.field]}}
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+            <!-- </p-panel> -->
+        </div>
+
+        <!-- <p-dialog header="User Master Entry" [contentStyle]="{'overflow':'scroll'}" [modal]="true" [maximizable]="true"
+    [(visible)]="isEdited" [responsive]="true" [style]="{width: '1111px', height: '1700px !important'}">
+    <div class="ui-g-12 ui-fluid border-teal">
+        <form #f="ngForm" name="userMaster">
+            <div class="ui-g-12 ui-fluid">
+                <div class="ui-g-6 ui-md-3 padtop">
+                    <span class="ui-float-label">
+                        <input name="UserName" pInputText [(ngModel)]="UserName" autocomplete="off" required>
+                        <label for="UserName" class="float-input">User Name</label>
+                    </span>
+                </div>
+                <div class="ui-g-6 ui-md-3 padtop">
+                    <span class="ui-float-label">
+                        <input name="Password" pInputText [(ngModel)]="Password" autocomplete="off" required>
+                        <label for="Password" class="float-input">Password</label>
+                    </span>
+                </div>
+                <div class="ui-g-6 ui-md-3 padtop">
+                    <span class="ui-float-label">
+                        <input name="Email" pInputText [(ngModel)]="Email" autocomplete="off" required>
+                        <label for="Email" class="float-input">Email ID</label>
+                    </span>
+                </div>
+                <div class="ui-g-6 ui-md-3 padtop">
+                    <span class="ui-float-label">
+                        <input name="Emp" pInputText [(ngModel)]="Emp" autocomplete="off" required>
+                        <label for="Emp" class="float-input">Employee ID</label>
+                    </span>
+                </div>
+                <div class="ui-g-6 ui-md-3 padtop">
+                    <span class="ui-float-label">
+                        <input name="Phone" pInputText [(ngModel)]="Phone" autocomplete="off" required>
+                        <label for="Phone" class="float-input">Phone Number</label>
+                    </span>
+                </div>
+
+                <div class="ui-g-9 ui-md-3">
+                    <label class="ui-g-7 label-fontsize dashboard" for="RoleMapping">Role Mapping ID</label>
+                    <p-dropdown #role class="ui-g-12 ui-fluid dashboard" [options]="RoleMappingOptions"
+                        (onClick)="onSelect('RoleMapping', 'click')" (keyup.enter)="onSelect('RoleMapping', 'enter')"
+                        (keyup.tab)="onSelect('RoleMapping', 'enter')" [(ngModel)]="RoleMapping"
+                        (ngModelChange)="onReset('role')" name="Role" [showClear]="true" optionLabel='label'
+                        filterMatchMode="startsWith" [showClear]="true" required>
+                        <ng-template let-item pTemplate="selectedItem">
+                            <span style="vertical-align:middle">{{item.label}}</span>
+                        </ng-template>
+                    </p-dropdown>
+                </div> -->
+
+        <!-- <div class="ui-g-6 ui-md-3 padtop">
+                    <span class="ui-float-label">
+                        <input name="RCode" pInputText [(ngModel)]="RCode" autocomplete="off"
+                            style="text-transform: uppercase;" [disabled]="enableRegion" required>
+                        <label for="RCode" class="float-input">Region Code</label>
+                    </span>
+                </div>
+                <div class="ui-g-6 ui-md-3 padtop">
+                    <span class="ui-float-label">
+                        <input name="GCode" pInputText [(ngModel)]="GCode" autocomplete="off" [disabled]="enableGodown"
+                            required>
+                        <label for="GCode" class="float-input">Godown Code</label>
+                    </span>
+                </div>
+
+            </div>
+            <div class="ui-g-12">
+                <div class="ui-g-12 ui-md-4"></div>
+                <div class="ui-g-12 ui-md-4">
+                    <div class="ui-g border-lightgrey">
+                        <p-radioButton class="ui-g-6" name="Flag" label="Active" value=1 [(ngModel)]="Active" required>
+                        </p-radioButton>
+                        <p-radioButton class="ui-g-6" name="Flag" label="InActive" value=0 [(ngModel)]="Active"
+                            required>
+                        </p-radioButton>
+                    </div>
+                </div>
+                <div class="ui-g-12 ui-md-4"></div>
+            </div>
+            <div class="ui-g-12">
+                <div class="ui-g-12 ui-md-5"></div>
+                <div class="ui-g-3 ui-md-2 ui-fluid" style="padding-left: 30px;">
+                    <button pButton type="button" label=Save (click)="onSave()"
+                        [disabled]="(!UserName || !Password || !Active || !RoleMapping)"> </button>
+                </div>
+                <div class="ui-g-12 ui-md-5"></div>
+            </div>
+        </form>
+    </div>
+</p-dialog> -->

@@ -1,0 +1,142 @@
+<app-header></app-header>
+<app-menu *ngIf="canShowMenu"></app-menu>
+<div class="ui-g-12 ui-md-12 ui-lg-12 content">
+    <p-panel>
+        <p-header>
+            <div class="ui-g panel-header">
+                <div class="ui-g-5 dashboard">Commodity Master</div>
+                <div class="ui-g-12 ui-md-7 dashboard" style="padding-left: 45%">
+                    <input class="search-masters" type="text" [(ngModel)]="searchText" pInputText
+                        placeholder="Search by Item Name" (ngModelChange)="onSearch($event)">
+                </div>
+            </div>
+        </p-header>
+        <p-toast position="top-center" key="t-err"></p-toast>
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-12 ui-fluid border-teal">
+                <form #f="ngForm" name="commodityMaster">
+                    <div class="ui-g-12 ui-fluid">
+                        <div class="ui-g-12 ui-md-1"></div>
+                        <div class="ui-g-6 ui-md-2" style="padding-top: 25px;">
+                            <span class="ui-float-label">
+                                <input name="ItemCode" pInputText [(ngModel)]="ItemCode" [readonly]="true"
+                                    autocomplete="off" required>
+                                <label for="ItemCode" class="float-input">Item Code</label>
+                            </span>
+                        </div>
+                        <div class="ui-g-6 ui-md-2" style="padding-top: 25px;">
+                            <span class="ui-float-label">
+                                <input name="ItemName" pInputText [(ngModel)]="ItemName" autocomplete="off"
+                                    [readonly]="(isEdited)" required>
+                                <label for="ItemName" class="float-input">Item Name</label>
+                            </span>
+                        </div>
+                        <div class="ui-g-6 ui-md-2" style="padding-top: 25px;">
+                            <span class="ui-float-label">
+                                <input name="Hsncode" pInputText [(ngModel)]="Hsncode" autocomplete="off" required>
+                                <label for="Hsncode" class="float-input">Hsncode</label>
+                            </span>
+                        </div>
+                        <div class="ui-g-6 ui-md-2" style="padding-top: 25px;">
+                            <span class="ui-float-label">
+                                <input name="ITTax" pInputText [(ngModel)]="ITTax" autocomplete="off" required>
+                                <label for="ITTax" class="float-input">IT TAX</label>
+                            </span>
+                        </div>
+                        <div class="ui-g-12 ui-md-2">
+                            <label class="ui-g-10 label-fontsize dashboard" for="Measurement_Type">Grouping Type</label>
+                            <p-dropdown #group name="group" class="ui-g-12 ui-fluid dashboard" [options]="groupOptions"
+                                [(ngModel)]="Group" name="group_Type" (onClick)="onSelect('group','click')"
+                                (keydown.enter)="onSelect('group','enter')" optionLabel='label' [showClear]="true" filter="true"
+                                resetFilterOnHide="true">
+                                <ng-template let-item pTemplate="selectedItem">
+                                    <span style="vertical-align:middle">{{item.label}}</span>
+                                </ng-template>
+                            </p-dropdown>
+                        </div>
+                        <div class="ui-g-12 ui-md-1"></div>
+                    </div>
+                    <div class="ui-g-12 ui-fluid">
+                        <div class="ui-g-12 ui-md-1"></div>
+                        <div class="ui-g-12 ui-md-2">
+                            <label class="ui-g-10 label-fontsize dashboard" for="Measurement_Type">Weightment
+                                Type</label>
+                            <p-dropdown #measurement name="Measurement" class="ui-g-12 ui-fluid dashboard"
+                                [options]="MeasurementOptions" [(ngModel)]="Measurement" name="Measurement_Type"
+                                (onClick)="onSelect('measurement','click')"
+                                (keydown.enter)="onSelect('measurement','enter')" [showClear]="true" filter="true"
+                                resetFilterOnHide="true">
+                                <ng-template let-item pTemplate="selectedItem">
+                                    <span style="vertical-align:middle">{{item.label}}</span>
+                                </ng-template>
+                            </p-dropdown>
+                        </div>
+                        <div class="ui-g-9 ui-md-2">
+                            <label for="Allotment_Group" class="ui-g-7 label-fontsize dashboard">Select Group
+                                Name</label>
+                            <p-dropdown #allotment class="ui-g-12 ui-fluid dashboard" [options]="AllotmentOptions"
+                                (onClick)="onSelect('allotment', 'click')"
+                                (keydown.enter)="onSelect('allotment', 'enter')" [(ngModel)]="AllotmentGroup"
+                                [showClear]="true" filter="true" name="Allotment_Group" optionLabel="label"
+                                resetFilterOnHide="true">
+                                <ng-template let-item pTemplate="selectedItem">
+                                    <span style="vertical-align:middle">{{item.label}}</span>
+                                </ng-template>
+                            </p-dropdown>
+                        </div>
+                        <div class="ui-g-9 ui-md-2">
+                            <label for="Item_Type" class="ui-g-7 label-fontsize dashboard">Item Type</label>
+                            <p-dropdown #item class="ui-g-12 ui-fluid dashboard" [options]="ItemOptions"
+                                (onClick)="onSelect('item', 'click')" (keydown.enter)="onSelect('item', 'enter')"
+                                [(ngModel)]="ItemType" [showClear]="true" filter="true" name="Item_Type"
+                                resetFilterOnHide="true">
+                                <ng-template let-item pTemplate="selectedItem">
+                                    <span style="vertical-align:middle">{{item.label}}</span>
+                                </ng-template>
+                            </p-dropdown>
+                        </div>
+                        <div class="ui-g-12 ui-md-2" style="padding-top: 16px;">
+                            <div class="ui-g border-lightgrey">
+                                <p-radioButton class="ui-g-6" name="Flag" label="Active" value="A" [(ngModel)]="Active"
+                                    required>
+                                </p-radioButton>
+                                <p-radioButton class="ui-g-6" name="Flag" label="InActive" value="I"
+                                    [(ngModel)]="Active" required>
+                                </p-radioButton>
+                            </div>
+                        </div>
+                        <div class="ui-g-3 ui-md-1 ui-fluid" style="padding-top: 21px;">
+                            <button pButton type="button" label=Save (click)="onSave()"
+                                [disabled]="(!ItemName || !ItemType || !Measurement || !ITTax || !Active)"></button>
+                        </div>
+                        <div class="ui-g-3 ui-md-1 ui-fluid" style="padding-top: 21px;">
+                            <button pButton type="button" label=Add (click)="onAdd()"></button>
+                        </div>
+                        <div class="ui-g-12 ui-md-2"></div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="ui-g-12 dashboard">
+                <p-table #dt [columns]="ItemMasterCols" [value]="ItemMasterData" [rows]="20"
+                    [rowsPerPageOptions]="[10,20,30,40,50,100]" [paginator]="true" [loading]="loading"
+                    [responsive]="true" exportFilename="ITEM_MASTER" autoLayout="true">
+                    <ng-template pTemplate="header" let-columns>
+                        <tr style="text-align: center;">
+                            <th *ngFor="let col of columns">
+                                {{col.header}}
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns" let-rowIndex="rowIndex">
+                        <tr [pSelectableRow]="rowData" (dblclick)="onRow($event, rowData)">
+                            <td *ngFor="let col of columns">
+                                {{rowData[col.field]}}
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </p-panel>
+</div>

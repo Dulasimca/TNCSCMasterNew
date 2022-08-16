@@ -1,0 +1,183 @@
+<app-header></app-header>
+<app-menu *ngIf="canShowMenu"></app-menu>
+<div class="ui-g-12 ui-md-12 ui-lg-12 content">
+    <p-panel>
+        <p-header>
+            <div class="ui-g panel-header">
+                <div class="ui-g-5 dashboard">Godown Master</div>
+                <div class="ui-g-12 ui-md-7 dashboard" style="padding-left: 45%">
+                    <input class="search-masters" type="text" [(ngModel)]="searchText" pInputText
+                        placeholder="Search by Godown" (ngModelChange)="onSearch($event)">
+                </div>
+            </div>
+        </p-header>
+        <p-toast position="top-center" key="t-err"></p-toast>
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-12 ui-md-4"></div>
+            <div class="ui-g-9 ui-md-3">
+                <label class="ui-g-7 label-fontsize dashboard">Region</label>
+                <p-dropdown #region class="ui-g-12 ui-fluid dashboard" [options]="godownOptions"
+                    (onClick)="onSelect('godown', 'click')" (keydown.enter)="onSelect('godown', 'enter')"
+                    [(ngModel)]="Region" (ngModelChange)="onReset('godown')" [showClear]="true" filter="true"
+                    resetFilterOnHide="true" placeholder="-select-">
+                    <ng-template let-item pTemplate="selectedItem">
+                        <span style="vertical-align:middle">{{item.label}}</span>
+                    </ng-template>
+                </p-dropdown>
+            </div>
+            <div class="ui-g-3 ui-md-1" style="padding-top: 20px;">
+                <button class="ui-g-3 dashboard inline-margin" pButton type="button" label=View (click)="onView()"
+                    [disabled]="(!Region)"></button>
+            </div>
+            <div class="ui-g-3 ui-md-1" style="padding-top: 20px;">
+                <button class="ui-g-3 dashboard inline-margin" pButton type="button" label=Add (click)="onAdd()"
+                    [disabled]="(!Region)"></button>
+            </div>
+            <div class="ui-g-12 ui-md-4"></div>
+            <div class="ui-g-12 dashboard">
+                <p-table #dt [columns]="GodownMasterCols" [value]="GodownMasterData" [rows]="20"
+                    [rowsPerPageOptions]="[10,20,30,40,50,100]" [paginator]="true" [loading]="loading"
+                    [responsive]="true" exportFilename="GODOWN_MASTER_BY_TYPE" autoLayout="true">
+                    <ng-template pTemplate="header" let-columns>
+                        <tr style="text-align: center;">
+                            <th *ngFor="let col of columns">
+                                {{col.header}}
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns" let-rowIndex="rowIndex">
+                        <tr [pSelectableRow]="rowData" (dblclick)="onRow($event, rowData)">
+                            <td *ngFor="let col of columns">
+                                {{rowData[col.field]}}
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </p-panel>
+</div>
+
+<p-dialog header="Godown Master Update" [contentStyle]="{'overflow':'scroll'}" [modal]="true" [maximizable]="true"
+    [(visible)]="isEdited" [responsive]="true" [style]="{width: '1111px', height: '1600px !important'}">
+    <div class="ui-g-12 ui-fluid border-teal">
+        <form #f="ngForm" name="godownMaster">
+            <div class="ui-g-12 ui-fluid">
+                <div class="ui-g-6 ui-md-3 padtop">
+                    <span class="ui-float-label">
+                        <input name="GodownCode" pInputText [(ngModel)]="GodownCode" [readonly]="true"
+                            autocomplete="off" required>
+                        <label for="GodownCode" class="float-input">Godown Code</label>
+                    </span>
+                </div>
+                <div class="ui-g-6 ui-md-3 padtop">
+                    <span class="ui-float-label">
+                        <input name="GodownName" pInputText [(ngModel)]="GodownName" autocomplete="off" required>
+                        <label for="GodownName" class="float-input">Godown Name</label>
+                    </span>
+                </div>
+                <div class="ui-g-9 ui-md-3">
+                    <label class="ui-g-7 label-fontsize dashboard" for="OperationalType">Operational Type</label>
+                    <p-dropdown #operational class="ui-g-12 ui-fluid dashboard" [options]="operationalTypeOptions"
+                        (onClick)="onSelect('operationalType', 'click')"
+                        (keyup.enter)="onSelect('operationalType', 'enter')"
+                        (keyup.tab)="onSelect('operationalType', 'enter')" [(ngModel)]="OperationalType"
+                        (ngModelChange)="onReset('operational')" name="Operational" [showClear]="true"
+                        optionLabel='label' filterMatchMode="startsWith" [showClear]="true" required>
+                        <ng-template let-item pTemplate="selectedItem">
+                            <span style="vertical-align:middle">{{item.label}}</span>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+                <div class="ui-g-9 ui-md-3">
+                    <label class="ui-g-7 label-fontsize dashboard" for="OwnerType">Owner Type</label>
+                    <p-dropdown #owner class="ui-g-12 ui-fluid dashboard" [options]="ownerTypeOptions"
+                        (onClick)="onSelect('ownerType', 'click')" (keyup.enter)="onSelect('ownerType', 'enter')"
+                        (keyup.tab)="onSelect('ownerType', 'enter')" [(ngModel)]="OwnerType" optionLabel='label'
+                        name="Owner" (ngModelChange)="onReset('owner')" [showClear]="true" filter="true"
+                        resetFilterOnHide="true">
+                        <ng-template let-item pTemplate="selectedItem">
+                            <span style="vertical-align:middle">{{item.label}}</span>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+            </div>
+            <div class="ui-g-12">
+                <div class="ui-g-6 ui-md-2 padtop">
+                    <span class="ui-float-label">
+                        <input name="Carpet" pInputText [(ngModel)]="Carpet" autocomplete="off" required>
+                        <label for="Carpet" class="float-input">Carpet Area</label>
+                    </span>
+                </div>
+                <div class="ui-g-6 ui-md-2 padtop">
+                    <span class="ui-float-label">
+                        <input name="Capacity" pInputText [(ngModel)]="Capacity" autocomplete="off" required>
+                        <label for="Capacity" class="float-input">Capacity</label>
+                    </span>
+                </div>
+                <div class="ui-g-6 ui-md-2 padtop">
+                    <span class="ui-float-label">
+                        <input name="Shops" pInputText [(ngModel)]="Shops" autocomplete="off" required>
+                        <label for="Shops" class="float-input">No of Shops</label>
+                    </span>
+                </div>
+                <div class="ui-g-9 ui-md-2">
+                    <label class="ui-g-7 label-fontsize dashboard" for="doc">DocStatus</label>
+                    <p-dropdown #doc class="ui-g-12 ui-fluid dashboard" [options]="dsOptions"
+                        (onClick)="onSelect('Doc', 'click')" (keyup.enter)="onSelect('Doc', 'enter')"
+                        (keyup.tab)="onSelect('Doc', 'enter')" [(ngModel)]="DocStatus" name="doc"
+                        (ngModelChange)="onReset('doc')" [showClear]="true" filter="true" resetFilterOnHide="true">
+                        <ng-template let-item pTemplate="selectedItem">
+                            <span style="vertical-align:middle">{{item.label}}</span>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+                <div class="ui-g-9 ui-md-2">
+                    <label class="ui-g-7 label-fontsize dashboard" for="cb">CB Statment</label>
+                    <p-dropdown #cb class="ui-g-12 ui-fluid dashboard" [options]="cbOptions"
+                        (onClick)="onSelect('cb', 'click')" (keyup.enter)="onSelect('cb', 'enter')"
+                        (keyup.tab)="onSelect('cb', 'enter')" [(ngModel)]="CB" name="cb"
+                        (ngModelChange)="onReset('cb')" [showClear]="true" filter="true" resetFilterOnHide="true">
+                        <ng-template let-item pTemplate="selectedItem">
+                            <span style="vertical-align:middle">{{item.label}}</span>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+                <div class="ui-g-9 ui-md-2">
+                    <label class="ui-g-7 label-fontsize dashboard" for="allotment">Allotment</label>
+                    <p-dropdown #allotment class="ui-g-12 ui-fluid dashboard" [options]="allotmentOptions"
+                        (onClick)="onSelect('allotment', 'click')" (keyup.enter)="onSelect('allotment', 'enter')"
+                        (keyup.tab)="onSelect('allotment', 'enter')" [(ngModel)]="Allotment" name="allotment"
+                        (ngModelChange)="onReset('allotment')" [showClear]="true" filter="true"
+                        resetFilterOnHide="true">
+                        <ng-template let-item pTemplate="selectedItem">
+                            <span style="vertical-align:middle">{{item.label}}</span>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+            </div>
+            <div class="ui-g-12">
+                <div class="ui-g-12 ui-md-4"></div>
+                <div class="ui-g-12 ui-md-4">
+                    <div class="ui-g border-lightgrey">
+                        <p-radioButton class="ui-g-6" name="Flag" label="Active" value="A" [(ngModel)]="Active"
+                            required>
+                        </p-radioButton>
+                        <p-radioButton class="ui-g-6" name="Flag" label="InActive" value="I" [(ngModel)]="Active"
+                            required>
+                        </p-radioButton>
+                    </div>
+                </div>
+                <div class="ui-g-12 ui-md-4"></div>
+            </div>
+            <div class="ui-g-12">
+                <div class="ui-g-12 ui-md-5"></div>
+                <div class="ui-g-3 ui-md-2 ui-fluid" style="padding-left: 30px;">
+                    <button pButton type="button" label=Save (click)="onSave()"
+                        [disabled]="(!Carpet || !Capacity || !Active || !GodownName)"></button>
+                </div>
+                <div class="ui-g-12 ui-md-5"></div>
+            </div>
+        </form>
+    </div>
+</p-dialog>
