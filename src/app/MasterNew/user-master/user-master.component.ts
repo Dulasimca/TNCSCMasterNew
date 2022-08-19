@@ -62,7 +62,7 @@ export class UserMasterComponent implements OnInit {
     this.roleId = JSON.parse(this.authService.getUserAccessible().roleId);
     this.regions = this.roleBasedService.getRegions();
     this.data = this.roleBasedService.getInstance();
-    this.Password = 'Tncsc@22';
+    // this.Password = 'Tncsc@22';
     this.restAPIService.get(PathConstants.ROLE_MAPPING).subscribe(res => {
       if (res !== undefined) {
         this.RoleMappingData = res;
