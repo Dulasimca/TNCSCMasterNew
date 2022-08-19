@@ -290,6 +290,7 @@ export class TableConstants {
             { field: 'PhoneNumber', header: 'Phone Number' },
             { field: 'MappingId', header: 'Mapping Id' },
             { field: 'MappingName', header: 'Mapping Name' },
+            { field: 'checkOTP', header: 'check OTP' },
             { field: 'Flag', header: 'Active' },
         ];
 

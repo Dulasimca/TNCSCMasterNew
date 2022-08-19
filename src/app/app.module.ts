@@ -76,6 +76,8 @@ import { QuantityMasterComponent } from './MasterNew/quantity-master/quantity-ma
 import { UserMasterComponent } from './MasterNew/user-master/user-master.component';
 import { MenuMasterComponent } from './MasterNew/menu-master/menu-master.component';
 import { AllotmentQuantityComponent } from './MasterNew/allotment-quantity/allotment-quantity.component';
+import { KeyFilterModule } from 'primeng/keyfilter';
+import { InputFormatDirective } from './directives/input-format.directive';
 // import { FullCalendar } from 'primeng/fullcalendar';
 
 @NgModule({
@@ -112,7 +114,8 @@ import { AllotmentQuantityComponent } from './MasterNew/allotment-quantity/allot
     QuantityMasterComponent,
     UserMasterComponent,
     MenuMasterComponent,
-    AllotmentQuantityComponent
+    AllotmentQuantityComponent,
+    InputFormatDirective
   ],
   imports: [
     BrowserModule,
@@ -151,7 +154,8 @@ import { AllotmentQuantityComponent } from './MasterNew/allotment-quantity/allot
     // ProgressSpinnerModule,
     // InputMaskModule,
     // FileUploadModule
-    SlimLoadingBarModule
+    SlimLoadingBarModule,
+    KeyFilterModule
   ],
   providers: [AuthService, ConfirmationService, TableConstants, StatusMessage, LoginService,
     DatePipe, RestAPIService, PathConstants, ExcelService, MessageService, RoleBasedService],

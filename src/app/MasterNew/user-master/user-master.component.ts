@@ -45,6 +45,7 @@ export class UserMasterComponent implements OnInit {
   isEdited: boolean = false;
   PhoneNo: any;
   roleSelection: any[] = [];
+  Otp: any;
   @ViewChild('godown', { static: false }) godownPanel: Dropdown;
   @ViewChild('role', { static: false }) rolePanel: Dropdown;
   @ViewChild('region', { static: false }) regionPanel: Dropdown;
@@ -182,6 +183,7 @@ export class UserMasterComponent implements OnInit {
     this.GCode = (selectedRow.GodownCode !== undefined && selectedRow.GodownCode !== null && selectedRow.GodownCode !== '') ? 
     { label: selectedRow.GodownName, value: selectedRow.GodownCode } : '';
     this.Active = selectedRow.Flag;
+    this.Otp = selectedRow.checkOTP;
   }
 
   onAdd() {
@@ -229,6 +231,7 @@ export class UserMasterComponent implements OnInit {
         'Flag': (this.Active) ? 1 : 0,
         'GodownCode': this.GCode.value,
         'Regioncode': this.RCode.value,
+        'checkOTP': this.Otp
       };
       this.restAPIService.post(PathConstants.USERMASTER_POST, params).subscribe(res => {
         if (res) {

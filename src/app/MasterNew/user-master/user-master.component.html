@@ -86,8 +86,12 @@
                         <label for="Emp" class="float-input">Employee ID</label>
                     </span>
                 </div>
-
-
+                <div class="ui-g-6 ui-md-2 padtop">
+                    <span class="ui-float-label">
+                        <input name="otp" appInputFormat="digitOnly" maxlength="1" pInputText [(ngModel)]="Otp" autocomplete="off" required>
+                        <label for="otp" class="float-input">OTP</label>
+                    </span>
+                </div>
                 <div class="ui-g-6 ui-md-3 padtop">
                     <div class="ui-g border-lightgrey">
                         <p-radioButton class="ui-g-6" name="Flag" label="Active" value=1 [(ngModel)]="Active" required>

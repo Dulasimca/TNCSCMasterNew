@@ -50,6 +50,14 @@ export class GodownMasterComponent implements OnInit {
   Allotment: boolean;
   CB: boolean;
   DocStatus: boolean;
+  pds: any;
+  shopSociety: any;
+  taxInvoice: any;
+  advanceDay: any = 21;
+  exp: RegExp = /^[pbPB]+$/;
+  int: RegExp = /[1-31]$/;
+  num: RegExp = /[0-1]$/;
+
   @ViewChild('godown', { static: false }) godownPanel: Dropdown;
   @ViewChild('operational', { static: false }) operationalTypePanel: Dropdown;
   @ViewChild('owner', { static: false }) ownerTypePanel: Dropdown;
@@ -216,6 +224,10 @@ export class GodownMasterComponent implements OnInit {
     this.CB = selectedRow.CBStatement;
     this.Allotment = selectedRow.Allotment;
     this.DocStatus = selectedRow.DocStatus;
+    this.pds = selectedRow.PDS;
+    this.shopSociety = selectedRow.noofshopsociety;
+    this.taxInvoice =  selectedRow.TaxInvoice;
+    this.advanceDay = selectedRow.AdvancedDay;
   }
 
   onAdd() {
@@ -244,6 +256,10 @@ export class GodownMasterComponent implements OnInit {
       'ActiveFlag': this.Active,
       'CBStatement': this.CB,
       'Allotment': this.Allotment,
+      'PDS': this.pds,
+      'noofshopsociety': this.shopSociety,
+      'TaxInvoice': this.taxInvoice,
+      'AdvancedDay': this.advanceDay
     };
     this.restAPIService.post(PathConstants.GODOWN_MASTER_POST, params).subscribe(res => {
       if (res) {
@@ -306,5 +322,17 @@ export class GodownMasterComponent implements OnInit {
     this.GodownCode = this.GodownName = this.Capacity = this.Carpet = this.Shops = this.OperationalType = this.OwnerType = null;
     this.CB = this.Allotment = this.Active = this.DocStatus = null;
     this.isEdited = false;
+  }
+
+  OnCheck() {
+    if(this.advanceDay !== null && this.advanceDay !== undefined && this.advanceDay !== 21 && this.advanceDay.length === 2) {
+      this.messageService.clear();
+        this.messageService.add({
+          key: 't-err', severity: StatusMessage.SEVERITY_WARNING,
+          summary: StatusMessage.SUMMARY_WARNING, detail: 'Whether this day '+ this.advanceDay +' is updated in G2G portal (POS machine) or not. If not document will not transferred to G2G Portal so please don’t change the day.'
+        });
+    }else {
+      this.messageService.clear();
+    }
   }
 }
