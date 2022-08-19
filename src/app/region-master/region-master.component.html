@@ -11,18 +11,12 @@
       <p-toast position="top-center" key="t-err"></p-toast>
       <div class="ui-g ui-md-12 ui-fluid  dashboard">
         <div class="ui-g-12 ui-md-3"></div>
-        <div class="ui-g-12 ui-md-2">
-          <label for="regCode" class="label-fontsize">Region Code</label>
-          <input name="regCode" type="text" size="15" pInputText [(ngModel)]="RCode" [readOnly]="true">
-        </div>
-        <div class="ui-g-12 ui-md-2">
-          <label for="regName" class="label-fontsize">Region Name</label>
-          <input name="regName" type="text" size="15" pInputText [(ngModel)]="RName" [readOnly]="isSelected"
-            autocomplete="off">
-        </div>
-        <div class="ui-g-4 ui-md-1">
-          <button class="ui-g-3 dashboard inline-margin" style="margin-top: 18px;" pButton type="button" label={{label}}
-            (click)="onSave()"></button>
+        <!-- <div class="ui-g-4 ui-md-1" style="padding-left: 30px;">
+          <button class="ui-g-3 dashboard inline-margin" style="margin-top: 18px;" pButton type="button" label= View
+            (click)="onView()"></button>
+        </div> -->
+        <div class="ui-g-3 ui-md-1" style="padding-left: 30px;">
+          <button class="ui-g-3 dashboard inline-margin" style="margin-top: 18px;" pButton type="button" label=Add (click)="onAdd()"></button>
         </div>
       </div>
       <div class="ui-g-12 ui-fluid">
@@ -46,4 +40,63 @@
       </div>
     </div>
   </p-panel>
+  <p-dialog header="Region Master Update" [contentStyle]="{'overflow':'scroll'}" [modal]="true" [maximizable]="true"
+    [(visible)]="isEdited" [responsive]="true" [style]="{width: '1111px', height: '1600px !important'}">
+    <div class="ui-g-12 ui-fluid border-teal">
+      <form #f="ngForm" name="regionMaster">
+        <div class="ui-g-12 ui-fluid">
+          <div class="ui-g-6 ui-md-3 padtop">
+            <span class="ui-float-label">
+              <input name="rgcode" pInputText [(ngModel)]="rgCode" [readonly]="true" autocomplete="off" required>
+              <label for="rgcode" class="float-input">Region Code</label>
+            </span>
+          </div>
+          <div class="ui-g-6 ui-md-3 padtop">
+            <span class="ui-float-label">
+              <input name="regname" pInputText [(ngModel)]="regionName"  autocomplete="off" required>
+              <label for="regname" class="float-input">Region Name</label>
+            </span>
+          </div>
+          <div class="ui-g-6 ui-md-3 padtop">
+            <span class="ui-float-label">
+              <input name="add1" pInputText [(ngModel)]="address1"  autocomplete="off" required>
+              <label for="add1" class="float-input">Address 1</label>
+            </span>
+          </div>
+          <div class="ui-g-6 ui-md-3 padtop">
+            <span class="ui-float-label">
+              <input name="add2" pInputText [(ngModel)]="address2"  autocomplete="off" required>
+              <label for="add2" class="float-input">Address 2</label>
+            </span>
+          </div>
+          <div class="ui-g-6 ui-md-3 padtop">
+            <span class="ui-float-label">
+              <input name="phnno" pInputText  [(ngModel)]="phoneNumber" maxlength="10"  autocomplete="off" required>
+              <label for="phnno" class="float-input">Phone Number</label>
+            </span>
+          </div>
+          <div class="ui-g-6 ui-md-3 padtop">
+            <span class="ui-float-label">
+              <input name="pincode" pInputText [(ngModel)]="pinCode"  autocomplete="off" required>
+              <label for="pincode" class="float-input">Pin Code</label>
+            </span>
+          </div>
+          <div class="ui-g-6 ui-md-3 padtop">
+            <span class="ui-float-label">
+              <input name="emailid" pInputText [(ngModel)]="emailId"  autocomplete="off" required>
+              <label for="emailid" class="float-input">Email ID</label>
+            </span>
+          </div>
+        </div>
+        <div class="ui-g-12">
+          <div class="ui-g-12 ui-md-5"></div>
+          <div class="ui-g-3 ui-md-2 ui-fluid" style="padding-left: 30px;">
+            <button class="ui-g-3 dashboard inline-margin" style="margin-top: 18px;" pButton type="button" label={{label}}
+            (click)="onSave()"  [disabled]="(!regionName || !address1 || !address2 || !phoneNumber || !pinCode || !emailId)"></button>
+          </div>
+          <div class="ui-g-12 ui-md-5"></div>
+      </div>
+      </form>
+    </div>
+  </p-dialog>
 </div>

@@ -45,13 +45,23 @@ export class TableConstants {
             { header: 'DocStatus', field: 'DStatus' },
             { header: 'CB Statment', field: 'CBS' },
             { header: 'Allotment', field: 'ALT' },
+            { header: 'PDS', field: 'PDS' },
+            { header: 'DocApproval', field: 'Doc Approval' },
+            { header: 'noofshopsociety', field: 'no of shopsociety' },
+            { header: 'TaxInvoice', field: 'TaxInvoice' },
+            { header: 'AdvancedDay', field: 'AdvancedDay' },
             { header: 'Active Flag', field: 'ActiveFlag' }
         ];
 
         this.RegionMasterCols = [
             { header: 'S.No.', field: 'SlNo' },
             { header: 'Region Code', field: 'RGCODE' },
-            { header: 'Region Name', field: 'RGNAME' }
+            { header: 'Region Name', field: 'RGNAME' },
+            { header: 'Address 1', field: 'Address1' },
+            { header: 'Address 2', field: 'Address2' },
+            { header: 'Phone No', field: 'PhoneNo' },
+            { header: 'Pincode', field: 'Pincode' },
+            { header: 'Email ID', field: 'Emailid' }
         ];
 
         this.DepositorMasterType = [

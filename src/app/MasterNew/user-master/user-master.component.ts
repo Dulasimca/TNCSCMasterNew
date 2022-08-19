@@ -46,6 +46,7 @@ export class UserMasterComponent implements OnInit {
   PhoneNo: any;
   roleSelection: any[] = [];
   Otp: any;
+  num: RegExp = /[0-1]$/;
   @ViewChild('godown', { static: false }) godownPanel: Dropdown;
   @ViewChild('role', { static: false }) rolePanel: Dropdown;
   @ViewChild('region', { static: false }) regionPanel: Dropdown;

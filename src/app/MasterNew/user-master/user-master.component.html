@@ -88,7 +88,7 @@
                 </div>
                 <div class="ui-g-6 ui-md-2 padtop">
                     <span class="ui-float-label">
-                        <input name="otp" appInputFormat="digitOnly" maxlength="1" pInputText [(ngModel)]="Otp" autocomplete="off" required>
+                        <input name="otp" appInputFormat="digitOnly" [pKeyFilter]="num" maxlength="1" pInputText [(ngModel)]="Otp" autocomplete="off" required>
                         <label for="otp" class="float-input">OTP</label>
                     </span>
                 </div>

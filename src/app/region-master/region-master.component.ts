@@ -18,12 +18,19 @@ export class RegionMasterComponent implements OnInit {
   regionData: any;
   loading: boolean;
   label: string = 'Save';
-  RName: string;
-  RCode: string;
   canShowMenu: boolean;
   FilteredArray: any;
   isSelected: boolean = false;
   SessionFlag: any;
+  isEdited: boolean = false;
+  rgCode: any;
+  regionName: any;
+  sessionFlag: any;
+  address1: any;
+  address2: any;
+  phoneNumber: any;
+  pinCode: any;
+  emailId: any;
 
   constructor(private TableConstants: TableConstants, private restApi: RestAPIService, private authService: AuthService,
     private messageService: MessageService) { }
@@ -63,10 +70,16 @@ export class RegionMasterComponent implements OnInit {
 
   onRowSelect(event, selectedRow) {
     this.isSelected = true;
-    this.label = 'Update';
-    this.RName = selectedRow.RGNAME;
-    this.RCode = selectedRow.RGCODE;
+    this.isEdited = true;
+    // this.label = 'Update';
+    this.regionName = selectedRow.RGNAME;
+    this.rgCode = selectedRow.RGCODE;
     this.SessionFlag = selectedRow.SessionFlag;
+    this.address1 = selectedRow.Address1;
+    this.address2 = selectedRow.Address2;
+    this.phoneNumber = selectedRow.PhoneNo;
+    this.pinCode  = selectedRow.Pincode;
+    this.emailId  = selectedRow.Emailid 
   }
 
   onView() {
@@ -103,9 +116,14 @@ export class RegionMasterComponent implements OnInit {
 
   onSave() {
     const params = {
-      'RGCODE': this.RCode || '',
-      'RGNAME': this.RName,
+      'RGCODE': this.rgCode || '',
+      'RGNAME': this.regionName,
       'SessionFlag': this.SessionFlag || 'N',
+      'Address1': this.address1,
+      'Address2': this.address2,
+      'PhoneNo': this.phoneNumber,
+      'Pincode': this.pinCode,
+      'Emailid': this.emailId
     };
     this.restApi.post(PathConstants.REGION_POST, params).subscribe(res => {
       if (res) {
@@ -138,7 +156,15 @@ export class RegionMasterComponent implements OnInit {
 
   onClear() {
     this.isSelected = false;
-    this.RCode = this.RName = this.SessionFlag = undefined;
-
+    this.rgCode = this.regionName = this.SessionFlag = undefined;
+    this.address1 = null;
+    this.address2 = null;
+    this.pinCode = null;
+    this.phoneNumber = null;
+    this.emailId = null;
   }
+  onAdd() {
+    this.isEdited = true;
+  }
+  
 }
