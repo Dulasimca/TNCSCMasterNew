@@ -325,13 +325,29 @@ export class GodownMasterComponent implements OnInit {
   }
 
   OnCheck() {
-    if(this.advanceDay !== null && this.advanceDay !== undefined && this.advanceDay !== 21 && this.advanceDay.length === 2) {
+    //if(this.advanceDay === null || this.advanceDay === undefined || this.advanceDay !== 21 ) {
+      if(this.advanceDay < 21) {
       this.messageService.clear();
         this.messageService.add({
           key: 't-err', severity: StatusMessage.SEVERITY_WARNING,
           summary: StatusMessage.SUMMARY_WARNING, detail: 'Whether this day '+ this.advanceDay +' is updated in G2G portal (POS machine) or not. If not document will not transferred to G2G Portal so please don’t change the day.'
         });
-    }else {
+    }else if(this.advanceDay >21 && this.advanceDay < 31) {
+      this.messageService.clear();
+        this.messageService.add({
+          key: 't-err', severity: StatusMessage.SEVERITY_WARNING,
+          summary: StatusMessage.SUMMARY_WARNING, detail: 'Whether this day '+ this.advanceDay +' is updated in G2G portal (POS machine) or not. If not document will not transferred to G2G Portal so please don’t change the day.'
+        });
+
+    }else if(this.advanceDay >30) {
+      this.messageService.clear();
+        this.messageService.add({
+          key: 't-err', severity: StatusMessage.SEVERITY_WARNING,
+          summary: StatusMessage.SUMMARY_WARNING, detail: 'Not Valid days.'
+        });
+        this.advanceDay=''
+      }
+    else {
       this.messageService.clear();
     }
   }

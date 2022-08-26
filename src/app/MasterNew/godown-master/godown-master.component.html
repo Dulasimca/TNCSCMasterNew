@@ -159,7 +159,7 @@
                     <span class="ui-float-label">
                         <input name="PDS" maxlength="1" style="text-transform:uppercase" pInputText [pKeyFilter]="exp" [(ngModel)]="pds"  autocomplete="off" 
                         required>
-                        <label for="PDS" class="float-input">PDS</label>
+                        <label for="PDS" class="float-input">PDS Enter P or B</label>
                     </span>
                 </div>
                 <div class="ui-g-6 ui-md-2 padtop">
@@ -172,13 +172,13 @@
                 <div class="ui-g-6 ui-md-2 padtop">
                     <span class="ui-float-label">
                         <input name="Tax Invoice" [pKeyFilter]="num" maxlength="1"  pInputText [(ngModel)]="taxInvoice" autocomplete="off" required>
-                        <label for="Tax Invoice" class="float-input">Tax Invoice</label>
+                        <label for="Tax Invoice" class="float-input">Tax Invoice ENTER 1 or 0</label>
                     </span>
                 </div>
                 <div class="ui-g-6 ui-md-2 padtop">
                     <span class="ui-float-label">
-                        <input name="Advanced Day" [pKeyFilter]="int" minlength="1" maxlength="2" (input)="OnCheck()" pInputText [(ngModel)]="advanceDay" autocomplete="off" required>
-                        <label for="Advanced Day" class="float-input">Advanced Day</label>
+                        <input name="Advanced Day" [pKeyFilter]="int" minlength="1" maxlength="2" (change)="OnCheck()" pInputText [(ngModel)]="advanceDay" autocomplete="off" required>
+                        <label for="Advanced Day" class="float-input">Advanced Day (1 to 30)</label>
                     </span>
                 </div>
             </div>
