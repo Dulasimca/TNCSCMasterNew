@@ -1,1 +1,84 @@
-<p>fci-district-master works!</p>
+<app-header></app-header>
+<app-menu *ngIf="canShowMenu"></app-menu>
+<div class="ui-g-12 ui-md-12 ui-lg-12 content">
+    <p-panel>
+        <p-header>
+            <div class="ui-g panel-header">
+                <div class="ui-g-5 dashboard">FCI District Master</div>
+                <div class="ui-g-12 ui-md-7 dashboard" style="padding-left: 45%">
+                    <input class="search-masters" type="text"  [(ngModel)]="searchText" pInputText
+                        placeholder="Search by UserName" (ngModelChange)="onSearch($event)">
+                </div>
+            </div>
+        </p-header>
+        <p-toast position="top-center" key="t-err"></p-toast>
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-6 ui-md-2">
+                <span class="ui-float-label">
+                    <input name="lgddisname" type="text"  pInputText [(ngModel)]="lgddisName" autocomplete="off" required>
+                    <label for="lgddisname" class="float-input">LGD District Name: <span
+                            class="form-mandatory-field">*</span></label>
+                </span>
+            </div>
+            <div class="ui-g-6 ui-md-2">
+                <span class="ui-float-label">
+                    <input name="disname" type="text" pInputText [(ngModel)]="districtName" autocomplete="off" required>
+                    <label for="disname" class="float-input">District Name: <span
+                            class="form-mandatory-field">*</span></label>
+                </span>
+            </div>        
+            <div class="ui-g-6 ui-md-2">
+                <span class="ui-float-label">
+                    <input name="discode" type="text" pInputText [(ngModel)]="districtCode" autocomplete="off" required>
+                    <label for="discode" class="float-input">lgd District Code: <span
+                            class="form-mandatory-field">*</span></label>
+                </span>
+            </div>
+            <div class="ui-g-6 ui-md-2">
+                <label for="_region" class="ui-g-7 label-fontsize dashboard">Region</label>  
+                <p-dropdown #region class="ui-fluid dashboard" [options]="regionOptions" [(ngModel)]="RCode"  
+                  (onClick)="onSelect('reg', 'click')" (keyup.shift.tab)="onSelect('reg', 'tab')" [showClear]="true"  
+                  filter="true" resetFilterOnHide="true" (keyup.tab)="onSelect('reg', 'tab')" filterMatchMode="startsWith"  
+                  placeholder="-select-" name="_region">  
+                  <ng-template let-item pTemplate="selectedItem">  
+                    <span style="vertical-align:middle">{{item.label}}</span>  
+                  </ng-template>  
+                </p-dropdown>  
+              </div>
+              <div class="ui-g-6 ui-md-2">
+                <div class="ui-g border-lightgrey">
+                    <p-radioButton class="ui-g-6" name="Flag" label="Active" value="1" [(ngModel)]="Active" required>
+                    </p-radioButton>
+                    <p-radioButton class="ui-g-6" name="Flag" label="InActive" value="0" [(ngModel)]="Active" required>
+                    </p-radioButton>
+                  </div>
+                </div>
+            <div class="ui-g-3 ui-md-2 ui-fluid" style="padding-left: 30px;">
+                <button pButton type="button" label=Save (click)="onSave()"
+                    [disabled]="(!lgddisName || !districtName || !districtCode || !RCode || !Active)"></button>                
+            </div> 
+            <div class="ui-g-3 ui-md-2 ui-fluid" style="padding-left: 30px;">
+            <button  pButton type="button" label=View (click)="onView()"
+            ></button>
+        </div>
+        </div>
+        <p-table #dt [columns]="fcidistrictCols" [value]="fcidistrictData" [rows]="20"
+        [rowsPerPageOptions]="[10,20,30,40,50,100]" [paginator]="true" [loading]="loading"
+        [responsive]="true" exportFilename="FCI_COMMODITY_MASTER" autoLayout="true">
+        <ng-template pTemplate="header" let-columns>
+            <tr style="text-align: center;">
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns" let-rowIndex="rowIndex">
+            <tr [pSelectableRow]="rowData" (dblclick)="onRow($event, rowData)">
+                <td *ngFor="let col of columns">
+                    {{rowData[col.field]}}
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+    </p-panel>
+</div>

@@ -118,5 +118,9 @@ export class PathConstants {
   public static readonly FciHiredFrom_POST = '/api/FciHiredFrom/Post';
   public static readonly FciHiredFrom_GET = '/api/FciHiredFrom/';
 
+  //FciDistrictMaster
+  public static readonly FciDistrictMaster_POST = '/api/FciDistrictMaster/Post';
+  public static readonly FciDistrictMaster_GET = '/api/FciDistrictMaster/';
+
 
 }

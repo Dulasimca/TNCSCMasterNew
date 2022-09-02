@@ -34,6 +34,7 @@ export class TableConstants {
     FciOwnershipType: any;
     FciHiredBy: any;
     FciHiredFrom: any;
+    FciDistrictMaster: any;
 
     constructor() {
         this.GodownMaster = [
@@ -358,6 +359,14 @@ export class TableConstants {
         this.FciHiredFrom = [
             { field: 'hired_from_id', header: 'Hired From ID'},
             { field: 'hired_from_Name', header: 'Hired From Name'}
+        ];
+
+        this.FciDistrictMaster = [
+            { field: 'lgd_district_name_en', header: 'LGD District Name'},
+            { field: 'district_name_ll', header: 'District Name'},
+            { field: 'lgd_district_code', header: 'District Code'},
+            { field: 'lgd_state_code', header: 'State Code'},
+            { field: 'RGNAME', header: 'Region Code'}
         ]
     }
 }
