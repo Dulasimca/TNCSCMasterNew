@@ -26,6 +26,7 @@ export class MenuComponent implements OnInit {
   showDownArrow_CM: boolean = false;
   showDownArrow_MD: boolean = false;
   showDownArrow_SCU: boolean = false;
+  showDownArrow_FCI: boolean = false;
   constructor() { }
 
   ngOnInit() {
@@ -53,6 +54,9 @@ export class MenuComponent implements OnInit {
       case 'scu':
         this.showDownArrow_SCU = !this.showDownArrow_SCU;
         break;
+      case 'fc':
+      this.showDownArrow_FCI = !this.showDownArrow_FCI;
+      break;
     }
   }
 

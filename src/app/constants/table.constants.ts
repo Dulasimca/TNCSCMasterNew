@@ -28,6 +28,12 @@ export class TableConstants {
     UserMaster: any;
     MenuMaster: any;
     AllotmentCommodityCols: any;
+    FciBagType: any;
+    FciCommodityMaster: any;
+    FciOwnershipGroup: any;
+    FciOwnershipType: any;
+    FciHiredBy: any;
+    FciHiredFrom: any;
 
     constructor() {
         this.GodownMaster = [
@@ -322,5 +328,36 @@ export class TableConstants {
             { field: 'Acomm', header: 'Allotment Commodity' },
             { field: 'Asch', header: 'Allotment Scheme' }
         ];
+
+        this.FciBagType = [
+            { field: 'bag_type_id', header: 'Bag ID'},
+            { field: 'bag_type_name', header: 'Bag Name'},
+            { field: 'tare_weight', header: 'Tare Weight'}
+        ];
+
+        this.FciCommodityMaster = [
+            { field: 'commodity_id', header: 'Commodity ID'},
+            { field: 'commodity_name', header: 'Commodity Name'}
+        ];
+
+        this.FciOwnershipGroup = [
+            { field: 'ownership_group_type', header: 'Ownership Group ID'},
+            { field: 'ownership_group_Name', header: 'Ownership Group Name'}
+        ];
+
+        // this.FciOwnershipType = [
+        //     { field: 'ownership_type', header: 'Ownership Type'},
+        //     { field: 'ownership_Name', header: 'Ownership Name'}
+        // ];
+
+        this.FciHiredBy = [
+            { field: 'hired_by_Id', header: 'Hired By ID'},
+            { field: 'hired_by_Name', header: 'Hired By Name'}
+        ];
+
+        this.FciHiredFrom = [
+            { field: 'hired_from_id', header: 'Hired From ID'},
+            { field: 'hired_from_Name', header: 'Hired From Name'}
+        ]
     }
 }

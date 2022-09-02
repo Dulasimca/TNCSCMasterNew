@@ -92,5 +92,31 @@ export class PathConstants {
   ///TrackIP
   public static readonly IMAGE_UPLOAD = '/api/Upload';
 
+  
+  //FciBagType
+  public static readonly FciBagType_POST = '/api/FciBagType/Post';
+  public static readonly FciBagType_GET = '/api/FciBagType';
+
+  //FciCommodityMaster
+  public static readonly FciCommodityMaster_POST = '/api/FciCommodityMaster/Post';
+  public static readonly FciCommodityMaster_GET = '/api/FciCommodityMaster'; 
+
+  //FciOwnershipGroup
+  
+  public static readonly FciOwnershipGroup_POST = '/api/FciOwnershipGroup/Post';
+  public static readonly FciOwnershipGroup_GET = '/api/FciOwnershipGroup/';
+
+  //FciOwnershipType
+  // public static readonly FciOwnershipType_POST = '/api/FciOwnershipType/Post';
+  // public static readonly FciOwnershipType_GET = '/api/FciOwnershipType/';
+
+  //FciHiredBy
+  public static readonly FciHiredBy_POST  = '/api/FciHiredBy/post';
+  public static readonly FciHiredBy_GET   = '/api/FciHiredBy/';
+
+  //FciHiredFrom
+  public static readonly FciHiredFrom_POST = '/api/FciHiredFrom/Post';
+  public static readonly FciHiredFrom_GET = '/api/FciHiredFrom/';
+
 
 }

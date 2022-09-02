@@ -132,6 +132,40 @@
             </div>
           </div>
         </div>
+        <div class="ui-g-12 no-pad-left sidenav-layout-a">
+          <a class="sidenav-layout-a pad-right" (click)="toggleButton('fc')">FCI</a>
+          <i *ngIf="!showDownArrow_FCI" aria-hidden="true" class="fa fa-angle-down sidenav-layout-arrow"></i>
+          <i *ngIf="showDownArrow_FCI" aria-hidden="true" class="fa fa-angle-up sidenav-layout-arrow"></i>
+          <div *ngIf="showDownArrow_FCI" class="ui-g-12 dashboard">
+            <div class="ui-g-12 no-pad-left">
+              <a class="sidenav-layout-a" [routerLink]="['/fcibagtype']" routerLinkActive="active">FCI Bag Master</a>
+            </div>
+            <div class="ui-g-12 no-pad-left">
+              <a class="sidenav-layout-a" [routerLink]="['/fcicommoditymaster']" routerLinkActive="active">FCI Commodity Master</a>
+            </div>
+            <div class="ui-g-12 no-pad-left">
+              <a class="sidenav-layout-a" [routerLink]="['/fcidistrictmaster']" routerLinkActive="active">FCI District Master</a>
+            </div>
+            <div class="ui-g-12 no-pad-left">
+              <a class="sidenav-layout-a" [routerLink]="['/TypeMaster']" routerLinkActive="active">FCI State Master</a>
+            </div>
+            <div class="ui-g-12 no-pad-left">
+              <a class="sidenav-layout-a" [routerLink]="['/TransactionMaster']" routerLinkActive="active">FCI Tehsildar Master</a>
+            </div>
+            <div class="ui-g-12 no-pad-left">
+              <a class="sidenav-layout-a" [routerLink]="['/fciownershipgrouptype']" routerLinkActive="active">FCI Ownership group Master</a>
+            </div>
+            <div class="ui-g-12 no-pad-left">
+              <a class="sidenav-layout-a" [routerLink]="['/fciownershiptype']" routerLinkActive="active">FCI Ownership Master</a>
+            </div>
+            <div class="ui-g-12 no-pad-left">
+              <a class="sidenav-layout-a" [routerLink]="['/fcihiredby']" routerLinkActive="active">FCI HiredBy Master</a>
+            </div>
+            <div class="ui-g-12 no-pad-left">
+              <a class="sidenav-layout-a" [routerLink]="['/fcihiredfrom']" routerLinkActive="active">FCI HiredFrom Master</a>
+            </div>
+          </div>
+        </div>
       </li>
     </ul>
   </div>

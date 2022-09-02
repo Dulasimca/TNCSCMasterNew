@@ -29,6 +29,13 @@ import { QuantityMasterComponent } from './MasterNew/quantity-master/quantity-ma
 import { UserMasterComponent } from './MasterNew/user-master/user-master.component';
 import { MenuMasterComponent } from './MasterNew/menu-master/menu-master.component';
 import { AllotmentQuantityComponent } from './MasterNew/allotment-quantity/allotment-quantity.component';
+import { FciBagTypeComponent } from './FCI/fci-bag-type/fci-bag-type.component';
+import { FciCommodityMasterComponent } from './FCI/fci-commodity-master/fci-commodity-master.component';
+import { FciOwnershipgroupTypeComponent } from './FCI/fci-ownershipgroup-type/fci-ownershipgroup-type.component';
+import { FciHiredByComponent } from './FCI/fci-hired-by/fci-hired-by.component';
+import { FciHiredFromComponent } from './FCI/fci-hired-from/fci-hired-from.component';
+import { FciDistrictMasterComponent } from './FCI/fci-district-master/fci-district-master.component';
+// import { FciOwnershipTypeComponent } from './FCI/fci-ownership-type/fci-ownership-type.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -60,7 +67,14 @@ const routes: Routes = [
   { path: 'AllotmentQuantity', component: AllotmentQuantityComponent, canActivate: [AuthGuard] },
   { path: 'UserMaster', component: UserMasterComponent, canActivate: [AuthGuard] },
   { path: 'MenuMaster', component: MenuMasterComponent, canActivate: [AuthGuard] },
-  { path: '**', component: LoginComponent, canActivate: [AuthGuard] }
+  { path: 'fcibagtype', component: FciBagTypeComponent },
+  { path: 'fcicommoditymaster', component: FciCommodityMasterComponent},
+  { path: 'fciownershipgrouptype', component:FciOwnershipgroupTypeComponent},
+  { path: 'fcihiredby', component: FciHiredByComponent},
+  { path: 'fcihiredfrom', component: FciHiredFromComponent},
+  { path: 'fcidistrictmaster', component: FciDistrictMasterComponent}
+  // { path: 'fciownershintptype', component: FciOwnershipTypeComponent}
+  // { path: '**', compone: LoginComponent, canActivate: [AuthGuard] }
 
 ];
 

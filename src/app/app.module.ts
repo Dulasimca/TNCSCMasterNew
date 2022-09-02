@@ -78,6 +78,12 @@ import { MenuMasterComponent } from './MasterNew/menu-master/menu-master.compone
 import { AllotmentQuantityComponent } from './MasterNew/allotment-quantity/allotment-quantity.component';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { InputFormatDirective } from './directives/input-format.directive';
+import { FciBagTypeComponent } from './FCI/fci-bag-type/fci-bag-type.component';
+import { FciCommodityMasterComponent } from './FCI/fci-commodity-master/fci-commodity-master.component';
+import { FciOwnershipgroupTypeComponent } from './FCI/fci-ownershipgroup-type/fci-ownershipgroup-type.component';
+import { FciHiredByComponent } from './FCI/fci-hired-by/fci-hired-by.component';
+import { FciHiredFromComponent } from './FCI/fci-hired-from/fci-hired-from.component';
+import { FciDistrictMasterComponent } from './FCI/fci-district-master/fci-district-master.component';
 // import { FullCalendar } from 'primeng/fullcalendar';
 
 @NgModule({
@@ -115,7 +121,13 @@ import { InputFormatDirective } from './directives/input-format.directive';
     UserMasterComponent,
     MenuMasterComponent,
     AllotmentQuantityComponent,
-    InputFormatDirective
+    InputFormatDirective,
+    FciBagTypeComponent,
+    FciCommodityMasterComponent,
+    FciOwnershipgroupTypeComponent,
+    FciHiredByComponent,
+    FciHiredFromComponent,
+    FciDistrictMasterComponent,
   ],
   imports: [
     BrowserModule,
