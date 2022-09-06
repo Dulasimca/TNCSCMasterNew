@@ -102,7 +102,7 @@ export class FciBagTypeComponent implements OnInit {
     if (value !== undefined && value !== '') {
       value = value.toString().toUpperCase();
       this.FciBagTypeData = this.FilteredArray.filter(item => {
-        return item.UserName.toString().toUpperCase().startsWith(value);
+        return item.bag_type_name.toString().toUpperCase().startsWith(value);
       });
     } else {
       this.FciBagTypeData = this.FilteredArray;

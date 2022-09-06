@@ -112,7 +112,7 @@ export class FciDistrictMasterComponent implements OnInit {
     if (value !== undefined && value !== '') {
       value = value.toString().toUpperCase();
       this.fcidistrictData = this.FilteredArray.filter(item => {
-        return item.UserName.toString().toUpperCase().startsWith(value);
+        return item.lgd_district_name_en.toString().toUpperCase().startsWith(value);
       });
     } else {
       this.fcidistrictData = this.FilteredArray;
@@ -125,7 +125,7 @@ export class FciDistrictMasterComponent implements OnInit {
     this.districtCode = selectedRow.lgd_district_code;
     this.RCode  = selectedRow.RCode;
     this.regionOptions = [{ label: selectedRow.RGNAME, value: selectedRow.RCode }]
-    this.Active = selectedRow.ActiveFlag;
+    this.Active = selectedRow.active;
   }
 
 

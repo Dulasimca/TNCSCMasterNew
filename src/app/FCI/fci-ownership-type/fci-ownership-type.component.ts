@@ -8,33 +8,32 @@ import { AuthService } from 'src/app/services/auth.service';
 import { RestAPIService } from 'src/app/services/restAPI.service';
 
 @Component({
-  selector: 'app-fci-hired-from',
-  templateUrl: './fci-hired-from.component.html',
-  styleUrls: ['./fci-hired-from.component.css']
+  selector: 'app-fci-ownership-type',
+  templateUrl: './fci-ownership-type.component.html',
+  styleUrls: ['./fci-ownership-type.component.css']
 })
-export class FciHiredFromComponent implements OnInit {
+export class FciOwnershipTypeComponent implements OnInit {
 
-  hiredfromId: any;
-  hiredfromName: any;
+  ownershipType: any;
+  ownershipName: any;
+  fciownertypeCols: any;
+  fciownertypeData: any;
   canShowMenu: boolean;
   loading: boolean;
   FilteredArray: any;
-  fcihiredfromCols: any;
-  fcihiredfromData: any;
 
   constructor(private authService: AuthService, private restAPIService: RestAPIService, private messageService: MessageService, private tableconstants: TableConstants) { }
 
-  ngOnInit() {    
+  ngOnInit() {
     this.canShowMenu = (this.authService.isLoggedIn()) ? this.authService.isLoggedIn() : false;
-
   }
 
   onView() {
     this.loading = true;
-    this.restAPIService.get(PathConstants.FciHiredFrom_GET).subscribe(res => {
+    this.restAPIService.get(PathConstants.FciOwnershipType_GET).subscribe(res => {
       if (res !== undefined && res !== null && res.length !== 0) {
-        this.fcihiredfromCols = this.tableconstants.FciHiredFrom;
-        this.fcihiredfromData = res;
+        this.fciownertypeCols = this.tableconstants.FciOwnershipType;
+        this.fciownertypeData = res;
         this.FilteredArray = res;
         this.loading = false;
       } else {
@@ -59,10 +58,10 @@ export class FciHiredFromComponent implements OnInit {
 
   onSave() {
     const params = {
-    'hired_from_id': this.hiredfromId,
-    'hired_from_Name': this.hiredfromName,
+    'ownership_type': this.ownershipType,
+    'ownership_Name': this.ownershipName,
   };
-  this.restAPIService.post(PathConstants.FciHiredFrom_POST, params).subscribe(res => {
+  this.restAPIService.post(PathConstants.FciOwnershipType_POST, params).subscribe(res => {
     if (res) {
       this.onView();
       this.messageService.clear();
@@ -91,20 +90,20 @@ export class FciHiredFromComponent implements OnInit {
   }
 
   onSearch(value) {
-    this.fcihiredfromData = this.FilteredArray;
+    this.fciownertypeData = this.FilteredArray;
     if (value !== undefined && value !== '') {
       value = value.toString().toUpperCase();
-      this.fcihiredfromData = this.FilteredArray.filter(item => {
-        return item.hired_from_Name.toString().toUpperCase().startsWith(value);
+      this.fciownertypeData = this.FilteredArray.filter(item => {
+        return item.ownership_Name.toString().toUpperCase().startsWith(value);
       });
     } else {
-      this.fcihiredfromData = this.FilteredArray;
+      this.fciownertypeData = this.FilteredArray;
     }
   }
 
   onRow(event, selectedRow) {
-    this.hiredfromId = selectedRow.hired_from_id;
-    this.hiredfromName  = selectedRow.hired_from_Name;
+    this.ownershipType = selectedRow.ownership_type;
+    this.ownershipName  = selectedRow.ownership_Name;
   }
 
 }

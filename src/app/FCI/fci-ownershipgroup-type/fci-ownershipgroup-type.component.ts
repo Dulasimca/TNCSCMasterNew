@@ -94,4 +94,16 @@ export class FciOwnershipgroupTypeComponent implements OnInit {
     this.groupName = selectedRow.ownership_group_Name;
   }
 
+  onSearch(value) {
+    this.fciownershipData = this.FilteredArray;
+    if (value !== undefined && value !== '') {
+      value = value.toString().toUpperCase();
+      this.fciownershipData = this.FilteredArray.filter(item => {
+        return item.ownership_group_Name.toString().toUpperCase().startsWith(value);
+      });
+    } else {
+      this.fciownershipData = this.FilteredArray;
+    }
+  }
+
 }

@@ -8,33 +8,34 @@ import { AuthService } from 'src/app/services/auth.service';
 import { RestAPIService } from 'src/app/services/restAPI.service';
 
 @Component({
-  selector: 'app-fci-hired-from',
-  templateUrl: './fci-hired-from.component.html',
-  styleUrls: ['./fci-hired-from.component.css']
+  selector: 'app-fci-state-master',
+  templateUrl: './fci-state-master.component.html',
+  styleUrls: ['./fci-state-master.component.css']
 })
-export class FciHiredFromComponent implements OnInit {
+export class FciStateMasterComponent implements OnInit {
 
-  hiredfromId: any;
-  hiredfromName: any;
+  lgdstateName: any;
+  stateName: any;
+  Active: any;
   canShowMenu: boolean;
   loading: boolean;
+  fcistateCols: any;
+  fcistateData: any;
   FilteredArray: any;
-  fcihiredfromCols: any;
-  fcihiredfromData: any;
+  stateCode: any;
 
   constructor(private authService: AuthService, private restAPIService: RestAPIService, private messageService: MessageService, private tableconstants: TableConstants) { }
 
-  ngOnInit() {    
+  ngOnInit() {
     this.canShowMenu = (this.authService.isLoggedIn()) ? this.authService.isLoggedIn() : false;
-
   }
 
   onView() {
     this.loading = true;
-    this.restAPIService.get(PathConstants.FciHiredFrom_GET).subscribe(res => {
+    this.restAPIService.get(PathConstants.FciStateMaster_GET).subscribe(res => {
       if (res !== undefined && res !== null && res.length !== 0) {
-        this.fcihiredfromCols = this.tableconstants.FciHiredFrom;
-        this.fcihiredfromData = res;
+        this.fcistateCols = this.tableconstants.FciStateMaster;
+        this.fcistateData = res;
         this.FilteredArray = res;
         this.loading = false;
       } else {
@@ -59,10 +60,12 @@ export class FciHiredFromComponent implements OnInit {
 
   onSave() {
     const params = {
-    'hired_from_id': this.hiredfromId,
-    'hired_from_Name': this.hiredfromName,
+    'lgd_state_name_en': this.lgdstateName,
+    'state_name_ll': this.stateName,
+    'lgd_state_code': this.stateCode,
+    'active': this.Active
   };
-  this.restAPIService.post(PathConstants.FciHiredFrom_POST, params).subscribe(res => {
+  this.restAPIService.post(PathConstants.FciStateMaster_POST, params).subscribe(res => {
     if (res) {
       this.onView();
       this.messageService.clear();
@@ -91,20 +94,22 @@ export class FciHiredFromComponent implements OnInit {
   }
 
   onSearch(value) {
-    this.fcihiredfromData = this.FilteredArray;
+    this.fcistateData = this.FilteredArray;
     if (value !== undefined && value !== '') {
       value = value.toString().toUpperCase();
-      this.fcihiredfromData = this.FilteredArray.filter(item => {
-        return item.hired_from_Name.toString().toUpperCase().startsWith(value);
+      this.fcistateData = this.FilteredArray.filter(item => {
+        return item.lgd_state_name_en.toString().toUpperCase().startsWith(value);
       });
     } else {
-      this.fcihiredfromData = this.FilteredArray;
+      this.fcistateData = this.FilteredArray;
     }
   }
 
   onRow(event, selectedRow) {
-    this.hiredfromId = selectedRow.hired_from_id;
-    this.hiredfromName  = selectedRow.hired_from_Name;
+    this.lgdstateName = selectedRow.lgd_state_name_en;
+    this.stateName  = selectedRow.state_name_ll;
+    this.Active = selectedRow.active;
+    this.stateCode = selectedRow.lgd_state_code;
   }
 
 }

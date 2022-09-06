@@ -95,7 +95,7 @@ export class FciHiredByComponent implements OnInit {
     if (value !== undefined && value !== '') {
       value = value.toString().toUpperCase();
       this.fcihiredbyData = this.FilteredArray.filter(item => {
-        return item.UserName.toString().toUpperCase().startsWith(value);
+        return item.hired_by_Name.toString().toUpperCase().startsWith(value);
       });
     } else {
       this.fcihiredbyData = this.FilteredArray;

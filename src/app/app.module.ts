@@ -84,6 +84,9 @@ import { FciOwnershipgroupTypeComponent } from './FCI/fci-ownershipgroup-type/fc
 import { FciHiredByComponent } from './FCI/fci-hired-by/fci-hired-by.component';
 import { FciHiredFromComponent } from './FCI/fci-hired-from/fci-hired-from.component';
 import { FciDistrictMasterComponent } from './FCI/fci-district-master/fci-district-master.component';
+import { FciStateMasterComponent } from './FCI/fci-state-master/fci-state-master.component';
+import { FciTehsildarMasterComponent } from './FCI/fci-tehsildar-master/fci-tehsildar-master.component';
+import { FciOwnershipTypeComponent } from './FCI/fci-ownership-type/fci-ownership-type.component';
 // import { FullCalendar } from 'primeng/fullcalendar';
 
 @NgModule({
@@ -128,6 +131,9 @@ import { FciDistrictMasterComponent } from './FCI/fci-district-master/fci-distri
     FciHiredByComponent,
     FciHiredFromComponent,
     FciDistrictMasterComponent,
+    FciStateMasterComponent,
+    FciTehsildarMasterComponent,
+    FciOwnershipTypeComponent,
   ],
   imports: [
     BrowserModule,

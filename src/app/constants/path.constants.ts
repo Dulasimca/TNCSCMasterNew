@@ -122,5 +122,17 @@ export class PathConstants {
   public static readonly FciDistrictMaster_POST = '/api/FciDistrictMaster/Post';
   public static readonly FciDistrictMaster_GET = '/api/FciDistrictMaster/';
 
+  //FciStateMaster
+  public static readonly FciStateMaster_POST = '/api/FciStateMaster/Post';
+  public static readonly FciStateMaster_GET = '/api/FciStateMaster/';
+
+  //FciTehsildarMaster
+  public static readonly FciTehsildarMaster_POST = '/api/FciTehsildarMaster/Post';
+  public static readonly FciTeshildarMaster_GET = '/api/FciTehsildarMaster/';
+
+  //FciOwnershipType
+  public static readonly FciOwnershipType_POST = '/api/FciOwnershipType/Post';
+  public static readonly FciOwnershipType_GET = '/api/FciOwnershipType/';
+
 
 }

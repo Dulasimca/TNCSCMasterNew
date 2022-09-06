@@ -35,6 +35,8 @@ export class TableConstants {
     FciHiredBy: any;
     FciHiredFrom: any;
     FciDistrictMaster: any;
+    FciStateMaster: any;
+    FciTeshildarMaster: any;
 
     constructor() {
         this.GodownMaster = [
@@ -346,10 +348,10 @@ export class TableConstants {
             { field: 'ownership_group_Name', header: 'Ownership Group Name'}
         ];
 
-        // this.FciOwnershipType = [
-        //     { field: 'ownership_type', header: 'Ownership Type'},
-        //     { field: 'ownership_Name', header: 'Ownership Name'}
-        // ];
+        this.FciOwnershipType = [
+            { field: 'ownership_type', header: 'Ownership Type'},
+            { field: 'ownership_Name', header: 'Ownership Name'}
+        ];
 
         this.FciHiredBy = [
             { field: 'hired_by_Id', header: 'Hired By ID'},
@@ -366,7 +368,24 @@ export class TableConstants {
             { field: 'district_name_ll', header: 'District Name'},
             { field: 'lgd_district_code', header: 'District Code'},
             { field: 'lgd_state_code', header: 'State Code'},
-            { field: 'RGNAME', header: 'Region Code'}
+            { field: 'RGNAME', header: 'Region Code'},
+            { field: 'active', header: 'Status'}
+        ];
+
+        this.FciStateMaster = [
+            { field: 'lgd_state_code', header: 'state Code'},
+            { field: 'lgd_state_name_en', header: 'LGD State Name'},
+            { field: 'state_name_ll', header: 'State Name'},           
+            { field: 'active', header: 'Status'}
+        ];
+
+        this.FciTeshildarMaster = [
+            {field: 'lgd_tehsil_cod', header: 'Teshildar Code'},
+            { field: 'lgd_tehsil_name_en', header: 'LGD Teshildar Name'},
+            {field: 'tehsil_name_ll', header: 'Tehsildar Name'},
+            {field: 'lgd_state_code', header: 'State Code'},
+            {field: 'lgd_district_code', header: 'District Code'},
+            {field: 'active', header: 'Status'}
         ]
     }
 }

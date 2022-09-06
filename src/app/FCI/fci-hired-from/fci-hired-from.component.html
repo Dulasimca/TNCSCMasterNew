@@ -7,7 +7,7 @@
                 <div class="ui-g-5 dashboard">FCI Hired From</div>
                 <div class="ui-g-12 ui-md-7 dashboard" style="padding-left: 45%">
                     <input class="search-masters" type="text"  [(ngModel)]="searchText" pInputText
-                        placeholder="Search by UserName" (ngModelChange)="onSearch($event)">
+                        placeholder="Search by HiredName" (ngModelChange)="onSearch($event)">
                 </div>
             </div>
         </p-header>
@@ -38,7 +38,7 @@
         </div>
         <p-table #dt [columns]="fcihiredfromCols" [value]="fcihiredfromData" [rows]="20"
         [rowsPerPageOptions]="[10,20,30,40,50,100]" [paginator]="true" [loading]="loading"
-        [responsive]="true" exportFilename="FCI_COMMODITY_MASTER" autoLayout="true">
+        [responsive]="true" exportFilename="FCI_HIREDFROM_MASTER" autoLayout="true">
         <ng-template pTemplate="header" let-columns>
             <tr style="text-align: center;">
                 <th *ngFor="let col of columns">

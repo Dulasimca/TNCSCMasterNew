@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { SelectItem } from 'primeng/api';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { StatusMessage } from 'src/app/constants/Messages';
 import { PathConstants } from 'src/app/constants/path.constants';
@@ -8,33 +9,53 @@ import { AuthService } from 'src/app/services/auth.service';
 import { RestAPIService } from 'src/app/services/restAPI.service';
 
 @Component({
-  selector: 'app-fci-hired-from',
-  templateUrl: './fci-hired-from.component.html',
-  styleUrls: ['./fci-hired-from.component.css']
+  selector: 'app-fci-tehsildar-master',
+  templateUrl: './fci-tehsildar-master.component.html',
+  styleUrls: ['./fci-tehsildar-master.component.css']
 })
-export class FciHiredFromComponent implements OnInit {
+export class FciTehsildarMasterComponent implements OnInit {
 
-  hiredfromId: any;
-  hiredfromName: any;
+  tehsildarCode: any;
+  lgdtehsildarName: any;
+  tehsildarName:any;
+  districts: any = [];
+  districtOptions: SelectItem[];
+  district: any;
   canShowMenu: boolean;
   loading: boolean;
+  fcitehsildarCols: any;
+  fcitehsildarData: any;
   FilteredArray: any;
-  fcihiredfromCols: any;
-  fcihiredfromData: any;
+  Active: any;
 
   constructor(private authService: AuthService, private restAPIService: RestAPIService, private messageService: MessageService, private tableconstants: TableConstants) { }
 
-  ngOnInit() {    
+  ngOnInit() {
     this.canShowMenu = (this.authService.isLoggedIn()) ? this.authService.isLoggedIn() : false;
-
+    this.restAPIService.get(PathConstants.FciDistrictMaster_GET).subscribe(res => {
+      this.districts = res;
+    })
+  }
+  
+  onSelect(type) {
+    let districtSelection = [];
+    switch (type) {
+      case 'D':
+        this.districts.forEach(d => {
+          districtSelection.push({ label: d.lgd_district_name_en, value: d.lgd_district_code });
+        })
+        this.districtOptions = districtSelection;
+        this.districtOptions.unshift({ label: '-select-', value: null });
+        break;
+    }
   }
 
   onView() {
     this.loading = true;
-    this.restAPIService.get(PathConstants.FciHiredFrom_GET).subscribe(res => {
+    this.restAPIService.get(PathConstants.FciTeshildarMaster_GET).subscribe(res => {
       if (res !== undefined && res !== null && res.length !== 0) {
-        this.fcihiredfromCols = this.tableconstants.FciHiredFrom;
-        this.fcihiredfromData = res;
+        this.fcitehsildarCols = this.tableconstants.FciTeshildarMaster;
+        this.fcitehsildarData = res;
         this.FilteredArray = res;
         this.loading = false;
       } else {
@@ -59,10 +80,14 @@ export class FciHiredFromComponent implements OnInit {
 
   onSave() {
     const params = {
-    'hired_from_id': this.hiredfromId,
-    'hired_from_Name': this.hiredfromName,
+    'lgd_tehsil_cod': this.tehsildarCode,
+    'lgd_tehsil_name_en': this.lgdtehsildarName,
+    'tehsil_name_ll': this.tehsildarName,
+    'lgd_state_code': 33,
+    'lgd_district_code': this.district,
+    'active': this.Active
   };
-  this.restAPIService.post(PathConstants.FciHiredFrom_POST, params).subscribe(res => {
+  this.restAPIService.post(PathConstants.FciTehsildarMaster_POST, params).subscribe(res => {
     if (res) {
       this.onView();
       this.messageService.clear();
@@ -91,20 +116,23 @@ export class FciHiredFromComponent implements OnInit {
   }
 
   onSearch(value) {
-    this.fcihiredfromData = this.FilteredArray;
+    this.fcitehsildarData = this.FilteredArray;
     if (value !== undefined && value !== '') {
       value = value.toString().toUpperCase();
-      this.fcihiredfromData = this.FilteredArray.filter(item => {
-        return item.hired_from_Name.toString().toUpperCase().startsWith(value);
+      this.fcitehsildarData = this.FilteredArray.filter(item => {
+        return item.lgd_tehsil_name_en.toString().toUpperCase().startsWith(value);
       });
     } else {
-      this.fcihiredfromData = this.FilteredArray;
+      this.fcitehsildarData = this.FilteredArray;
     }
   }
 
   onRow(event, selectedRow) {
-    this.hiredfromId = selectedRow.hired_from_id;
-    this.hiredfromName  = selectedRow.hired_from_Name;
+    this.tehsildarCode = selectedRow.lgd_tehsil_cod;
+    this.lgdtehsildarName  = selectedRow.lgd_tehsil_name_en;
+    this.tehsildarName  = selectedRow.tehsil_name_ll;
+    this.district = selectedRow.lgd_district_code;
+    this.Active = selectedRow.active;
   }
 
 }

@@ -1,0 +1,89 @@
+<app-header></app-header>
+<app-menu *ngIf="canShowMenu"></app-menu>
+<div class="ui-g-12 ui-md-12 ui-lg-12 content">
+    <p-panel>
+        <p-header>
+            <div class="ui-g panel-header">
+                <div class="ui-g-5 dashboard">FCI Tehsildar Master</div>
+                <div class="ui-g-12 ui-md-7 dashboard" style="padding-left: 45%">
+                    <input class="search-masters" type="text" [(ngModel)]="searchText" pInputText
+                        placeholder="Search by TehsildarName" (ngModelChange)="onSearch($event)">
+                </div>
+            </div>
+        </p-header>
+        <p-toast position="top-center" key="t-err"></p-toast>
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-6 ui-md-2">
+                <span class="ui-float-label">
+                    <input name="tehsilcode" type="text" appInputFormat="digitOnly" pInputText
+                        [(ngModel)]="tehsildarCode" autocomplete="off" required>
+                    <label for="tehsilcode" class="float-input">LGD Teshildar Code: <span
+                            class="form-mandatory-field">*</span></label>
+                </span>
+            </div>
+            <div class="ui-g-6 ui-md-2">
+                <span class="ui-float-label">
+                    <input name="lgdtehsname" type="text" pInputText [(ngModel)]="lgdtehsildarName" autocomplete="off"
+                        required>
+                    <label for="lgdtehsname" class="float-input">LGD Tehsildar Name: <span
+                            class="form-mandatory-field">*</span></label>
+                </span>
+            </div>
+            <div class="ui-g-6 ui-md-2">
+                <span class="ui-float-label">
+                    <input name="tehsiname" type="text" pInputText [(ngModel)]="tehsildarName" autocomplete="off"
+                        required>
+                    <label for="tehsiname" class="float-input">Tehsildar Name: <span
+                            class="form-mandatory-field">*</span></label>
+                </span>
+            </div>
+            <div class="ui-g-6 ui-md-2" style="margin-top: -14px;">
+                <label for="_region" class="ui-g-7 label-fontsize dashboard">District</label>
+                <p-dropdown #region class="ui-fluid dashboard" [options]="districtOptions" [(ngModel)]="district"
+                    (onClick)="onSelect('D')" (keyup.shift.tab)="onSelect('D')" [showClear]="true" filter="true"
+                    resetFilterOnHide="true" (keyup.tab)="onSelect('D')" filterMatchMode="startsWith"
+                    placeholder="-select-" name="_region">
+                    <ng-template let-item pTemplate="selectedItem">
+                        <span style="vertical-align:middle">{{item.label}}</span>
+                    </ng-template>
+                </p-dropdown>
+            </div>
+            <div class="ui-g-6 ui-md-2">
+                <div class="ui-g border-lightgrey">
+                    <p-radioButton class="ui-g-6" name="Flag" label="Active" value="1" [(ngModel)]="Active" required>
+                    </p-radioButton>
+                    <p-radioButton class="ui-g-6" name="Flag" label="InActive" value="0" [(ngModel)]="Active" required>
+                    </p-radioButton>
+                </div>
+            </div>
+            <div class="ui-g-12">
+                <div class="ui-g-12 ui-md-5"></div>
+                <div class="ui-g-6 ui-md-1 ui-fluid">
+                    <button pButton type="button" label=Save (click)="onSave()"
+                        [disabled]="(!tehsildarCode || !lgdtehsildarName || !tehsildarName || !district || !Active)"></button>
+                </div>
+                <div class="ui-g-6 ui-md-1 ui-fluid">
+                    <button pButton type="button" label=View (click)="onView()"></button>
+                </div>
+            </div>
+        </div>
+        <p-table #dt [columns]="fcitehsildarCols" [value]="fcitehsildarData" [rows]="20"
+            [rowsPerPageOptions]="[10,20,30,40,50,100]" [paginator]="true" [loading]="loading" [responsive]="true"
+            exportFilename="FCI_TEHSILDAR_MASTER" autoLayout="true">
+            <ng-template pTemplate="header" let-columns>
+                <tr style="text-align: center;">
+                    <th *ngFor="let col of columns">
+                        {{col.header}}
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns" let-rowIndex="rowIndex">
+                <tr [pSelectableRow]="rowData" (dblclick)="onRow($event, rowData)">
+                    <td *ngFor="let col of columns">
+                        {{rowData[col.field]}}
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p-panel>
+</div>

@@ -94,7 +94,7 @@ export class FciCommodityMasterComponent implements OnInit {
     if (value !== undefined && value !== '') {
       value = value.toString().toUpperCase();
       this.fcicommodityData = this.FilteredArray.filter(item => {
-        return item.UserName.toString().toUpperCase().startsWith(value);
+        return item.commodity_name.toString().toUpperCase().startsWith(value);
       });
     } else {
       this.fcicommodityData = this.FilteredArray;

@@ -35,6 +35,9 @@ import { FciOwnershipgroupTypeComponent } from './FCI/fci-ownershipgroup-type/fc
 import { FciHiredByComponent } from './FCI/fci-hired-by/fci-hired-by.component';
 import { FciHiredFromComponent } from './FCI/fci-hired-from/fci-hired-from.component';
 import { FciDistrictMasterComponent } from './FCI/fci-district-master/fci-district-master.component';
+import { FciStateMasterComponent } from './FCI/fci-state-master/fci-state-master.component';
+import { FciTehsildarMasterComponent } from './FCI/fci-tehsildar-master/fci-tehsildar-master.component';
+import { FciOwnershipTypeComponent } from './FCI/fci-ownership-type/fci-ownership-type.component';
 // import { FciOwnershipTypeComponent } from './FCI/fci-ownership-type/fci-ownership-type.component';
 
 const routes: Routes = [
@@ -72,8 +75,10 @@ const routes: Routes = [
   { path: 'fciownershipgrouptype', component:FciOwnershipgroupTypeComponent},
   { path: 'fcihiredby', component: FciHiredByComponent},
   { path: 'fcihiredfrom', component: FciHiredFromComponent},
-  { path: 'fcidistrictmaster', component: FciDistrictMasterComponent}
-  // { path: 'fciownershintptype', component: FciOwnershipTypeComponent}
+  { path: 'fcidistrictmaster', component: FciDistrictMasterComponent},
+  { path: 'fcistatemaster', component: FciStateMasterComponent},
+  { path: 'fcitehsildarmapping', component: FciTehsildarMasterComponent},
+  { path: 'fciownershiptype', component: FciOwnershipTypeComponent}
   // { path: '**', compone: LoginComponent, canActivate: [AuthGuard] }
 
 ];
