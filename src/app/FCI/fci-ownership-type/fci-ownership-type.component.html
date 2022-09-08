@@ -15,7 +15,7 @@
         <div class="ui-g ui-fluid">
             <div class="ui-g-6 ui-md-2">
                 <span class="ui-float-label">
-                    <input name="ownertype" type="text" appInputFormat="digitOnly" pInputText [(ngModel)]="ownershipType" autocomplete="off" required>
+                    <input name="ownertype" type="text" appInputFormat="digitOnly" (change)="onCheck()" pInputText [(ngModel)]="ownershipType" autocomplete="off" required>
                     <label for="ownertype" class="float-input">Ownership Type: <span
                             class="form-mandatory-field">*</span></label>
                 </span>

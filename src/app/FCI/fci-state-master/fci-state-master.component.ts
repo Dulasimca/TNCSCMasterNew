@@ -20,7 +20,7 @@ export class FciStateMasterComponent implements OnInit {
   canShowMenu: boolean;
   loading: boolean;
   fcistateCols: any;
-  fcistateData: any;
+  fcistateData: any = [];
   FilteredArray: any;
   stateCode: any;
 
@@ -28,13 +28,29 @@ export class FciStateMasterComponent implements OnInit {
 
   ngOnInit() {
     this.canShowMenu = (this.authService.isLoggedIn()) ? this.authService.isLoggedIn() : false;
+    this.fcistateCols = this.tableconstants.FciStateMaster;
+    this.onView();
   }
+
+  onCheck() {
+    this.fcistateData.forEach(i => {
+      if((i.lgd_state_code * 1) === (this.stateCode * 1)) {
+        console.log('v',i.lgd_state_code)
+        console.log('s',this.stateCode)
+        this.messageService.clear();
+        this.messageService.add({
+          key: 't-err', severity: StatusMessage.SEVERITY_WARNING,
+          summary: StatusMessage.SUMMARY_WARNING, detail: 'State Code is already exist,Please Update'
+        });
+        this.stateCode = null;
+      }
+    })
+}
 
   onView() {
     this.loading = true;
     this.restAPIService.get(PathConstants.FciStateMaster_GET).subscribe(res => {
       if (res !== undefined && res !== null && res.length !== 0) {
-        this.fcistateCols = this.tableconstants.FciStateMaster;
         this.fcistateData = res;
         this.FilteredArray = res;
         this.loading = false;
@@ -110,6 +126,23 @@ export class FciStateMasterComponent implements OnInit {
     this.stateName  = selectedRow.state_name_ll;
     this.Active = selectedRow.active;
     this.stateCode = selectedRow.lgd_state_code;
+  }
+
+  onCheckDcode() {
+    console.log('1')
+    this.fcistateData.forEach(i => {
+      const stateCode = i.lgd_district_code;
+      console.log('2',stateCode)
+      if(this.stateCode === stateCode){
+        this.messageService.clear();
+      this.messageService.add({
+        key: 't-err', severity: StatusMessage.SEVERITY_ERROR,
+        summary: StatusMessage.SUMMARY_ERROR, detail: StatusMessage.ErrorMessage
+      });
+      } else {
+
+      }
+    })
   }
 
 }

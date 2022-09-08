@@ -34,8 +34,22 @@ export class FciTehsildarMasterComponent implements OnInit {
     this.canShowMenu = (this.authService.isLoggedIn()) ? this.authService.isLoggedIn() : false;
     this.restAPIService.get(PathConstants.FciDistrictMaster_GET).subscribe(res => {
       this.districts = res;
+      this.onView();
     })
   }
+
+  onCheck() {
+    this.fcitehsildarData.forEach(i => {
+      if((i.lgd_tehsil_cod * 1) === (this.tehsildarCode * 1)) {
+        this.messageService.clear();
+        this.messageService.add({
+          key: 't-err', severity: StatusMessage.SEVERITY_WARNING,
+          summary: StatusMessage.SUMMARY_WARNING, detail: 'Ownership Type is already Exist,Please Update'
+        });
+        this.tehsildarCode = null;
+      }
+    })
+}
   
   onSelect(type) {
     let districtSelection = [];

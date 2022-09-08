@@ -26,7 +26,21 @@ export class FciOwnershipTypeComponent implements OnInit {
 
   ngOnInit() {
     this.canShowMenu = (this.authService.isLoggedIn()) ? this.authService.isLoggedIn() : false;
+    this.onView();
   }
+
+  onCheck() {
+    this.fciownertypeData.forEach(i => {
+      if((i.ownership_type * 1) === (this.ownershipType * 1)) {
+        this.messageService.clear();
+        this.messageService.add({
+          key: 't-err', severity: StatusMessage.SEVERITY_WARNING,
+          summary: StatusMessage.SUMMARY_WARNING, detail: 'Ownership Type is already Exist,Please Update'
+        });
+        this.ownershipType = null;
+      }
+    })
+}
 
   onView() {
     this.loading = true;

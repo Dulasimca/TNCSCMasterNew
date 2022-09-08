@@ -27,7 +27,22 @@ export class FciBagTypeComponent implements OnInit {
 
   ngOnInit() {
     this.canShowMenu = (this.authService.isLoggedIn()) ? this.authService.isLoggedIn() : false;
+    this.onView();
   }
+
+  
+  onCheck() {
+    this.FciBagTypeData.forEach(i => {
+      if((i.bag_type_id * 1) === (this.bagId * 1)) {
+        this.messageService.clear();
+        this.messageService.add({
+          key: 't-err', severity: StatusMessage.SEVERITY_WARNING,
+          summary: StatusMessage.SUMMARY_WARNING, detail: 'Bag ID is already Exist,Please Update'
+        });
+        this.bagId = null;
+      }
+    })
+}
 
   onView() {
     this.loading = true;

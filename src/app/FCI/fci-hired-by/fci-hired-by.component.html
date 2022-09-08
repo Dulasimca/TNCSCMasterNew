@@ -15,7 +15,7 @@
         <div class="ui-g ui-fluid">
             <div class="ui-g-6 ui-md-2">
                 <span class="ui-float-label">
-                    <input name="hiredid" type="text" appInputFormat="digitOnly" pInputText [(ngModel)]="hiredId" autocomplete="off" required>
+                    <input name="hiredid" type="text" appInputFormat="digitOnly" (change)="onCheck()" pInputText [(ngModel)]="hiredId" autocomplete="off" required>
                     <label for="hiredid" class="float-input">Hired By ID: <span
                             class="form-mandatory-field">*</span></label>
                 </span>

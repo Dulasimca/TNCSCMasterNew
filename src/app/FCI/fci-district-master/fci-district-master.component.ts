@@ -29,9 +29,13 @@ export class FciDistrictMasterComponent implements OnInit {
   loading: boolean;
   canShowMenu: boolean;
   fcidistrictCols: any;
-  fcidistrictData: any;
+  fcidistrictData: any = [];
   FilteredArray: any;
   districtCode: any;
+  editValue = 0;
+  dCode: any;
+  data: any[] = [];
+
 
   constructor(private authService: AuthService, private roleBasedService: RoleBasedService, private restAPIService: RestAPIService, private messageService: MessageService, private tableconstants: TableConstants) { }
 
@@ -40,13 +44,27 @@ export class FciDistrictMasterComponent implements OnInit {
     this.loggedInRCode = this.authService.getUserAccessible().rCode;
     this.regions = this.roleBasedService.getRegions();
     this.canShowMenu = (this.authService.isLoggedIn()) ? this.authService.isLoggedIn() : false;
+    this.fcidistrictCols = this.tableconstants.FciDistrictMaster;
+    this.onView();
+  }
+
+  onCheck() {
+      this.fcidistrictData.forEach(i => {
+        if((i.lgd_district_code * 1) === (this.districtCode * 1)) {
+          this.messageService.clear();
+          this.messageService.add({
+            key: 't-err', severity: StatusMessage.SEVERITY_WARNING,
+            summary: StatusMessage.SUMMARY_WARNING, detail: 'District Code is already Exist,Please Update'
+          });
+          this.districtCode = null;
+        }
+      })
   }
 
   onView() {
     this.loading = true;
     this.restAPIService.get(PathConstants.FciDistrictMaster_GET).subscribe(res => {
-      if (res !== undefined && res !== null && res.length !== 0) {
-        this.fcidistrictCols = this.tableconstants.FciDistrictMaster;
+      if (res !== undefined && res !== null && res.length !== 0) {    
         this.fcidistrictData = res;
         this.FilteredArray = res;
         this.loading = false;

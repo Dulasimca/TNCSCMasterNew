@@ -29,7 +29,7 @@
             </div>        
             <div class="ui-g-6 ui-md-2">
                 <span class="ui-float-label">
-                    <input name="discode" type="text" pInputText [(ngModel)]="districtCode" autocomplete="off" required>
+                    <input name="discode" appInputFormat="digitOnly" pInputText [(ngModel)]="districtCode" (change)="onCheck()" autocomplete="off" required>
                     <label for="discode" class="float-input">lgd District Code: <span
                             class="form-mandatory-field">*</span></label>
                 </span>

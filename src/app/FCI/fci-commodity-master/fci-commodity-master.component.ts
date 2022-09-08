@@ -26,6 +26,20 @@ export class FciCommodityMasterComponent implements OnInit {
 
   ngOnInit() {
     this.canShowMenu = (this.authService.isLoggedIn()) ? this.authService.isLoggedIn() : false;
+    this.onView();
+  }
+
+  onCheck() {
+    this.fcicommodityData.forEach(i => {
+      if((i.commodity_id * 1) === (this.commodityId * 1)) {
+        this.messageService.clear();
+        this.messageService.add({
+          key: 't-err', severity: StatusMessage.SEVERITY_WARNING,
+          summary: StatusMessage.SUMMARY_WARNING, detail: 'Commodity ID is already Exist,Please Update'
+        });
+        this.commodityId = null;
+      }
+    })
   }
   
   onView() {

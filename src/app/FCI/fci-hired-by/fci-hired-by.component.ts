@@ -26,8 +26,21 @@ export class FciHiredByComponent implements OnInit {
 
   ngOnInit() {
     this.canShowMenu = (this.authService.isLoggedIn()) ? this.authService.isLoggedIn() : false;
-
+    this.onView();
   }
+
+  onCheck() {
+    this.fcihiredbyData.forEach(i => {
+      if((i.hired_by_Id * 1) === (this.hiredId * 1)) {
+        this.messageService.clear();
+        this.messageService.add({
+          key: 't-err', severity: StatusMessage.SEVERITY_WARNING,
+          summary: StatusMessage.SUMMARY_WARNING, detail: 'Hire By ID is already Exist,Please Update'
+        });
+        this.hiredId = null;
+      }
+    })
+}
 
   onView() {
     this.loading = true;
