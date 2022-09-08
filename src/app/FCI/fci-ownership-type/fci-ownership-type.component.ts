@@ -77,6 +77,7 @@ export class FciOwnershipTypeComponent implements OnInit {
   };
   this.restAPIService.post(PathConstants.FciOwnershipType_POST, params).subscribe(res => {
     if (res) {
+      this.onClear();
       this.onView();
       this.messageService.clear();
       this.messageService.add({
@@ -118,6 +119,11 @@ export class FciOwnershipTypeComponent implements OnInit {
   onRow(event, selectedRow) {
     this.ownershipType = selectedRow.ownership_type;
     this.ownershipName  = selectedRow.ownership_Name;
+  }
+
+  onClear() {
+    this.ownershipType  = null;
+    this.ownershipName  = null;
   }
 
 }

@@ -78,6 +78,7 @@ export class FciOwnershipgroupTypeComponent implements OnInit {
     };
     this.restAPIService.post(PathConstants.FciOwnershipGroup_POST, params).subscribe(res => {
       if (res) {
+        this.onClear();
         this.onView();
         this.messageService.clear();
         this.messageService.add({
@@ -119,6 +120,11 @@ export class FciOwnershipgroupTypeComponent implements OnInit {
     } else {
       this.fciownershipData = this.FilteredArray;
     }
+  }
+
+  onClear() {
+    this.ownershipGroup = null;
+    this.groupName  = null;
   }
 
 }

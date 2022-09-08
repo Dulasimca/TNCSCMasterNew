@@ -77,6 +77,7 @@ export class FciHiredByComponent implements OnInit {
   };
   this.restAPIService.post(PathConstants.FciHiredBy_POST, params).subscribe(res => {
     if (res) {
+      this.onClear();
       this.onView();
       this.messageService.clear();
       this.messageService.add({
@@ -120,5 +121,9 @@ export class FciHiredByComponent implements OnInit {
     this.hiredName  = selectedRow.hired_by_Name;
   }
 
+  onClear() {
+    this.hiredId  = null;
+    this.hiredName  = null;
+  }
 
 }

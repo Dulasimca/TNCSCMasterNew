@@ -99,6 +99,7 @@ export class FciDistrictMasterComponent implements OnInit {
   };
   this.restAPIService.post(PathConstants.FciDistrictMaster_POST, params).subscribe(res => {
     if (res) {
+      this.onClear();
       this.onView();
       this.messageService.clear();
       this.messageService.add({
@@ -176,5 +177,11 @@ export class FciDistrictMasterComponent implements OnInit {
     }
   }
 
-
+  onClear() {
+    this.districtCode = null;
+    this.districtName = null;
+    this.lgddisName = null;
+    this.RCode  = null;
+    this.Active = null;
+  }
 }

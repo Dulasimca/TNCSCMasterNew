@@ -77,6 +77,7 @@ export class FciCommodityMasterComponent implements OnInit {
   };
   this.restAPIService.post(PathConstants.FciCommodityMaster_POST, params).subscribe(res => {
     if (res) {
+      this.onClear();
       this.onView();
       this.messageService.clear();
       this.messageService.add({
@@ -118,6 +119,11 @@ export class FciCommodityMasterComponent implements OnInit {
   onRow(event, selectedRow) {
     this.commodityId = selectedRow.commodity_id;
     this.commodityName  = selectedRow.commodity_name;
+  }
+
+  onClear() {
+    this.commodityId  = null;
+    this.commodityName  = null;
   }
 
 }

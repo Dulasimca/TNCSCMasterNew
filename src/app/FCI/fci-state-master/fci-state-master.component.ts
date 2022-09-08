@@ -83,6 +83,7 @@ export class FciStateMasterComponent implements OnInit {
   };
   this.restAPIService.post(PathConstants.FciStateMaster_POST, params).subscribe(res => {
     if (res) {
+      this.onClear();
       this.onView();
       this.messageService.clear();
       this.messageService.add({
@@ -143,6 +144,13 @@ export class FciStateMasterComponent implements OnInit {
 
       }
     })
+  }
+
+  onClear() {
+    this.stateCode  = null;
+    this.stateName  = null;
+    this.lgdstateName = null;
+    this.Active = null;
   }
 
 }

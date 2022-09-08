@@ -149,4 +149,13 @@ export class FciTehsildarMasterComponent implements OnInit {
     this.Active = selectedRow.active;
   }
 
+  onClear() {
+    this.tehsildarCode  = null;
+    this.tehsildarName  = null;
+    this.lgdtehsildarName = null;
+    this.district = null;
+    this.districtOptions  = [];
+    this.Active = null;
+  }
+
 }

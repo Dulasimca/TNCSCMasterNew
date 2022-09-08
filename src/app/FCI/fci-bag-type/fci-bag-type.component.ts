@@ -80,7 +80,8 @@ export class FciBagTypeComponent implements OnInit {
   };
   this.restAPIService.post(PathConstants.FciBagType_POST, params).subscribe(res => {
     if (res) {
-        this.onView();
+      this.onClear();
+      this.onView();
       this.messageService.clear();
       this.messageService.add({
         key: 't-err', severity: StatusMessage.SEVERITY_SUCCESS,
@@ -122,6 +123,12 @@ export class FciBagTypeComponent implements OnInit {
     } else {
       this.FciBagTypeData = this.FilteredArray;
     }
+  }
+
+  onClear() {
+    this.bagId = null;
+    this.bagName  = null;
+    this.tareWeight = null;
   }
 
 
