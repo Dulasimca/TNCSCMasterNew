@@ -103,6 +103,7 @@ export class FciTehsildarMasterComponent implements OnInit {
   };
   this.restAPIService.post(PathConstants.FciTehsildarMaster_POST, params).subscribe(res => {
     if (res) {
+      this.onClear();
       this.onView();
       this.messageService.clear();
       this.messageService.add({
