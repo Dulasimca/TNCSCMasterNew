@@ -35,6 +35,7 @@ export class FciDistrictMasterComponent implements OnInit {
   editValue = 0;
   dCode: any;
   data: any[] = [];
+  searchText: any;
 
 
   constructor(private authService: AuthService, private roleBasedService: RoleBasedService, private restAPIService: RestAPIService, private messageService: MessageService, private tableconstants: TableConstants) { }

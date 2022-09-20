@@ -21,6 +21,7 @@ export class FciOwnershipgroupTypeComponent implements OnInit {
   loading: boolean;
   FilteredArray: any;
   canShowMenu: boolean;
+  searchText: any;
 
   constructor(private authService: AuthService, private restAPIService: RestAPIService, private messageService: MessageService, private tableconstants: TableConstants) { }
 

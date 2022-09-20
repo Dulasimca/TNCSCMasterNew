@@ -21,6 +21,7 @@ export class FciHiredFromComponent implements OnInit {
   FilteredArray: any;
   fcihiredfromCols: any;
   fcihiredfromData: any;
+  searchText: any;
 
   constructor(private authService: AuthService, private restAPIService: RestAPIService, private messageService: MessageService, private tableconstants: TableConstants) { }
 

@@ -27,6 +27,7 @@ export class FciTehsildarMasterComponent implements OnInit {
   fcitehsildarData: any;
   FilteredArray: any;
   Active: any;
+  searchText: any;
 
   constructor(private authService: AuthService, private restAPIService: RestAPIService, private messageService: MessageService, private tableconstants: TableConstants) { }
 

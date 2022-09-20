@@ -21,6 +21,7 @@ export class FciCommodityMasterComponent implements OnInit {
   canShowMenu: boolean;
   loading: boolean;
   FilteredArray: any;
+  searchText: any;
 
   constructor(private authService: AuthService, private restAPIService: RestAPIService, private messageService: MessageService, private tableconstants: TableConstants) { }
 

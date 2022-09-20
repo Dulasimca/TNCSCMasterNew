@@ -23,6 +23,7 @@ export class FciStateMasterComponent implements OnInit {
   fcistateData: any = [];
   FilteredArray: any;
   stateCode: any;
+  searchText: any;
 
   constructor(private authService: AuthService, private restAPIService: RestAPIService, private messageService: MessageService, private tableconstants: TableConstants) { }
 

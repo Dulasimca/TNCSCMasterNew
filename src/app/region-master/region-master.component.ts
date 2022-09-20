@@ -164,6 +164,7 @@ export class RegionMasterComponent implements OnInit {
     this.emailId = null;
   }
   onAdd() {
+    this.onClear();
     this.isEdited = true;
   }
   

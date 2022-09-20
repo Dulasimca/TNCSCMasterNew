@@ -22,6 +22,7 @@ export class FciBagTypeComponent implements OnInit {
   FilteredArray: any;
   loading: boolean;
   canShowMenu: boolean;
+  searchText: any;
 
   constructor(private authService: AuthService, private restAPIService: RestAPIService, private messageService: MessageService, private tableconstants: TableConstants) { }
 
