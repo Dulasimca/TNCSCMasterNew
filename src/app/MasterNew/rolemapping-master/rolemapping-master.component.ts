@@ -37,19 +37,6 @@ export class RolemappingMasterComponent implements OnInit {
     this.onView();
   }
 
-  onCheck() {
-    let max = this.RoleMappingData[0]; 
-    if(this.RoleMappingData.length !==0) {
-      for(let i = 1; i < this.RoleMappingData.length; i++) {
-        if(this.RoleMappingData[i] > max) {
-              max = this.RoleMappingData[i];
-        } else {
-          continue;
-        }
-      }
-    }
-  }
-
   onSelect(type) {
     let rolenameSelection = [];
     switch (type) {
@@ -70,7 +57,6 @@ export class RolemappingMasterComponent implements OnInit {
         this.RoleMappingCols = this.tableconstants.RoleMaster;
         this.RoleMappingData = res;
         this.FilteredArray = res;
-        // this.mappingId = res.MappingId;
         this.loading = false;
       } else {
         this.loading = false;
