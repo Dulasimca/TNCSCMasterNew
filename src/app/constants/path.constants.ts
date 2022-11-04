@@ -134,5 +134,18 @@ export class PathConstants {
   public static readonly FciOwnershipType_POST = '/api/FciOwnershipType/Post';
   public static readonly FciOwnershipType_GET = '/api/FciOwnershipType/';
 
+    //RoleMapping
+    public static readonly RoleMapping_POST = '/api/RoleMapping/Post';
+    public static readonly RoleMapping_GET = '/api/RoleMapping';
+
+    //RoleMaster
+    public static readonly RoleMaster_GET = '/api/RoleMaster';
+
+    //ShopInactive
+    public static readonly ShopInactive_GET = '/api/ShopInactive/Get';
+
+    //UpdateIssuerMaster
+    public static readonly UpdateIssuerMasterAcsCode_POST = '/api/UpdateIssuerMasterAcsCode/Post';
+
 
 }

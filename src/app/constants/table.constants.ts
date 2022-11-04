@@ -37,6 +37,8 @@ export class TableConstants {
     FciDistrictMaster: any;
     FciStateMaster: any;
     FciTeshildarMaster: any;
+    RoleMaster: any;
+    ShopInactive: any;
 
     constructor() {
         this.GodownMaster = [
@@ -386,6 +388,20 @@ export class TableConstants {
             {field: 'lgd_state_code', header: 'State Code'},
             {field: 'lgd_district_code', header: 'District Code'},
             {field: 'active', header: 'Status'}
-        ]
+        ];
+
+        this.RoleMaster = [
+            {field: 'MappingId', header: 'Mapping ID'},
+            {field: 'MappingName', header: 'Name'},
+            {field: 'RoleName', header: 'Role'}
+        ];
+
+        this.ShopInactive = [
+            { field: 'TNCSName', header: 'Godown Name'},
+            { field: 'IssuerCode', header: 'Issuer Code'},
+            { field: 'Issuername', header: 'Issuer Name'},
+            { field: 'ACSCode', header: 'ACSCode'},
+            { field: 'Activeflag', header: 'Flag'}
+        ];
     }
 }

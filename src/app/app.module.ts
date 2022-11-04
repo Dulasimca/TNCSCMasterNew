@@ -87,6 +87,8 @@ import { FciDistrictMasterComponent } from './FCI/fci-district-master/fci-distri
 import { FciStateMasterComponent } from './FCI/fci-state-master/fci-state-master.component';
 import { FciTehsildarMasterComponent } from './FCI/fci-tehsildar-master/fci-tehsildar-master.component';
 import { FciOwnershipTypeComponent } from './FCI/fci-ownership-type/fci-ownership-type.component';
+import { RolemappingMasterComponent } from './MasterNew/rolemapping-master/rolemapping-master.component';
+import { ShopinactiveMasterComponent } from './MasterNew/shopinactive-master/shopinactive-master.component';
 // import { FullCalendar } from 'primeng/fullcalendar';
 
 @NgModule({
@@ -134,6 +136,8 @@ import { FciOwnershipTypeComponent } from './FCI/fci-ownership-type/fci-ownershi
     FciStateMasterComponent,
     FciTehsildarMasterComponent,
     FciOwnershipTypeComponent,
+    RolemappingMasterComponent,
+    ShopinactiveMasterComponent,
   ],
   imports: [
     BrowserModule,

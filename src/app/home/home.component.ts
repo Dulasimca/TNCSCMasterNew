@@ -174,6 +174,12 @@ export class HomeComponent implements OnInit {
         case 'userMaster':
         this.router.navigate(['UserMaster']);
         break;
+        case 'rolemaster':
+        this.router.navigate(['rolemaster']);
+        break;
+        case 'acscode':
+          this.router.navigate(['shopinactive']);
+          break;
     }
   }
 

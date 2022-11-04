@@ -269,7 +269,7 @@
           </div>
         </div>
         <div class="ui-g-12 dashboard">
-          <div class="ui-g-3"></div>
+          <div class="ui-g-12 ui-md-1"></div>
           <!-- <div id="menuMaster" class="ui-g-12 ui-md-6 ui-lg-2 card no-padding cursor-pointer"
             (click)="onGridClicked('menuMaster')">
             <div class="ui-g ui-fluid overview">
@@ -282,7 +282,8 @@
               </div>
             </div>
           </div> -->
-          <div id="stackCard" class="ui-g-12 ui-md-6 ui-lg-2 card no-padding cursor-pointer"
+          <div class="ui-g-12 ui-md-10 dashboard">
+          <div id="stackCard" class="ui-g-12 ui-md-6 ui-lg-3 card no-padding cursor-pointer"
             (click)="onGridClicked('stackCard')">
             <div class="ui-g ui-fluid overview">
               <div class="ui-g-12 overview-content clearfix">
@@ -294,7 +295,7 @@
               </div>
             </div>
           </div>
-          <div id="userMaster" class="ui-g-12 ui-md-6 ui-lg-2 card no-padding cursor-pointer"
+          <div id="userMaster" class="ui-g-12 ui-md-6 ui-lg-3 card no-padding cursor-pointer"
             (click)="onGridClicked('userMaster')">
             <div class="ui-g ui-fluid overview">
               <div class="ui-g-12 overview-content clearfix">
@@ -306,6 +307,31 @@
               </div>
             </div>
           </div>
+          <div id="rolemaster" class="ui-g-12 ui-md-6 ui-lg-3 card no-padding cursor-pointer"
+          (click)="onGridClicked('rolemaster')">
+          <div class="ui-g ui-fluid overview">
+            <div class="ui-g-12 overview-content clearfix">
+              <span class="ui-g-12 overview-title" style="padding-left: 20px;">ROLE MASTER</span>
+              <!-- <span class="ui-g-4 overview-detail">{{stackCardCount}}</span> -->
+            </div>
+            <div class="overview-footer">
+              <img src="../../assets/layout/images/dashboard/views.svg" style="width: 100%">
+            </div>
+          </div>
+        </div>
+        <div id="acscode" class="ui-g-12 ui-md-6 ui-lg-3 card no-padding cursor-pointer"
+        (click)="onGridClicked('acscode')">
+        <div class="ui-g ui-fluid overview">
+          <div class="ui-g-12 overview-content clearfix">
+            <span class="ui-g-12 overview-title" style="padding-left: 20px;">SHOP INACTIVE</span>
+            <!-- <span class="ui-g-4 overview-detail">{{stackCardCount}}</span> -->
+          </div>
+          <div class="overview-footer">
+            <img src="../../assets/layout/images/dashboard/views.svg" style="width: 100%">
+          </div>
+        </div>
+      </div>
+    </div>
           <div class="ui-g-3"></div>
         </div>
       </div>

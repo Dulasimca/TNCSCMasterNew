@@ -1,0 +1,66 @@
+<app-header></app-header>
+<app-menu *ngIf="canShowMenu"></app-menu>
+<div class="ui-g-12 ui-md-12 ui-lg-12 content">
+    <p-panel>
+        <p-header>
+            <div class="ui-g panel-header">
+                <div class="ui-g-5 dashboard">Role Master</div>
+                <div class="ui-g-12 ui-md-7 dashboard" style="padding-left: 45%">
+                    <input class="search-masters" type="text"  [(ngModel)]="searchText" pInputText
+                        placeholder="Search by Mappingid" (ngModelChange)="onSearch($event)">
+                </div>
+            </div>
+        </p-header>
+        <p-toast position="top-center" key="t-err"></p-toast>
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-6 ui-md-2">
+                <span class="ui-float-label">
+                    <input name="digitid" type="text" appInputFormat="digitOnly" (change)="onCheck()" [readonly]="true" pInputText [(ngModel)]="mappingId" autocomplete="off" required>
+                    <label for="digitid" class="float-input">Mapping Id: <span
+                            class="form-mandatory-field">*</span></label>
+                </span>
+            </div>
+            <div class="ui-g-6 ui-md-2">
+                <span class="ui-float-label">
+                    <input name="name" type="text" pInputText [(ngModel)]="name" autocomplete="off" required>
+                    <label for="name" class="float-input">Name: <span
+                            class="form-mandatory-field">*</span></label>
+                </span>
+            </div>
+            <div class="ui-g-6 ui-md-2" style="margin-top: -14px;">
+                <label for="_roleid" class="ui-g-7 label-fontsize dashboard">Role</label>
+                <p-dropdown #region class="ui-fluid dashboard" [options]="roleIdOptions" [(ngModel)]="roleId"
+                (onClick)="onSelect('D')" (keyup.shift.tab)="onSelect('D')" [showClear]="true" filter="true"
+                resetFilterOnHide="true" (keyup.tab)="onSelect('D')" filterMatchMode="startsWith"
+                name="_roleid">
+            </p-dropdown>
+            </div>
+            <div class="ui-g-3 ui-md-1 ui-fluid" style="padding-left: 30px;">
+                <button pButton type="button" label=Save (click)="onSave()"
+                    [disabled]="(!mappingId || !name || !roleId)"></button>                
+            </div> 
+            <!-- <div class="ui-g-3 ui-md-2 ui-fluid" style="padding-left: 30px;">
+            <button  pButton type="button" label=View (click)="onView()"
+            ></button>
+        </div> -->
+        </div>
+        <p-table #dt [columns]="RoleMappingCols" [value]="RoleMappingData" [rows]="20"
+        [rowsPerPageOptions]="[10,20,30,40,50,100]" [paginator]="true" [loading]="loading"
+        [responsive]="true" exportFilename="ROLE_MASTER" autoLayout="true">
+        <ng-template pTemplate="header" let-columns>
+            <tr style="text-align: center;">
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns" let-rowIndex="rowIndex">
+            <tr [pSelectableRow]="rowData" (dblclick)="onRow($event, rowData)">
+                <td *ngFor="let col of columns">
+                    {{rowData[col.field]}}
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+    </p-panel>
+</div>

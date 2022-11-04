@@ -38,7 +38,8 @@ import { FciDistrictMasterComponent } from './FCI/fci-district-master/fci-distri
 import { FciStateMasterComponent } from './FCI/fci-state-master/fci-state-master.component';
 import { FciTehsildarMasterComponent } from './FCI/fci-tehsildar-master/fci-tehsildar-master.component';
 import { FciOwnershipTypeComponent } from './FCI/fci-ownership-type/fci-ownership-type.component';
-// import { FciOwnershipTypeComponent } from './FCI/fci-ownership-type/fci-ownership-type.component';
+import { RolemappingMasterComponent } from './MasterNew/rolemapping-master/rolemapping-master.component';
+import { ShopinactiveMasterComponent } from './MasterNew/shopinactive-master/shopinactive-master.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -78,7 +79,9 @@ const routes: Routes = [
   { path: 'fcidistrictmaster', component: FciDistrictMasterComponent},
   { path: 'fcistatemaster', component: FciStateMasterComponent},
   { path: 'fcitehsildarmapping', component: FciTehsildarMasterComponent},
-  { path: 'fciownershiptype', component: FciOwnershipTypeComponent}
+  { path: 'fciownershiptype', component: FciOwnershipTypeComponent},
+  {path: 'rolemaster', component: RolemappingMasterComponent},
+  {path: 'shopinactive', component: ShopinactiveMasterComponent}
   // { path: '**', compone: LoginComponent, canActivate: [AuthGuard] }
 
 ];
