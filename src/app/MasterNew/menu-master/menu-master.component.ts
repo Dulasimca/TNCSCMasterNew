@@ -116,7 +116,7 @@ export class MenuMasterComponent implements OnInit {
       'MenuId': this.MenuId || 0,
       'ID': this.ID,
       'MenuName': this.MenuName,
-      'URL': '/' + this.url,
+      'URL':  this.url,
       'ParentId': this.ParentID,
       'RoleId': this.RoleMapping.value,
       'Active': this.Active,

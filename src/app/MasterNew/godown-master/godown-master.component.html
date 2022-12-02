@@ -25,14 +25,18 @@
                     </ng-template>
                 </p-dropdown>
             </div>
-            <div class="ui-g-3 ui-md-1" style="padding-top: 20px;">
+            <div class="ui-g-2 ui-md-1" style="padding-top: 20px;">
                 <button class="ui-g-3 dashboard inline-margin" pButton type="button" label=View (click)="onView()"
                     [disabled]="(!Region)"></button>
             </div>
-            <div class="ui-g-3 ui-md-1" style="padding-top: 20px;">
+            <div class="ui-g-2 ui-md-1" style="padding-top: 20px;">
                 <button class="ui-g-3 dashboard inline-margin" pButton type="button" label=Add (click)="onAdd()"
                     [disabled]="(!Region)"></button>
             </div>
+            <div class="ui-g-2 ui-md-1" style="padding-top: 20px;">
+                <button class="ui-g-3 dashboard inline-margin" pButton type="button" (click)="dt.exportCSV()" style="padding: 1px;"
+                  [disabled]="(!Region)" label=Excel></button>
+              </div>
             <div class="ui-g-12 ui-md-4"></div>
             <div class="ui-g-12 dashboard">
                 <p-table #dt [columns]="GodownMasterCols" [value]="GodownMasterData" [rows]="20"
